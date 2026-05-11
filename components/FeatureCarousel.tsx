@@ -42,17 +42,13 @@ function Mock1() {
 
   return (
     <div className="rounded-[18px] overflow-hidden border border-white/[0.08] shadow-[0_32px_80px_rgba(0,0,0,0.6)]" style={{ background: "#080f20" }}>
-      {/* Title bar */}
       <div className="flex items-center gap-2 px-4 py-3 border-b border-white/[0.06]" style={{ background: "#0a1428" }}>
         <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
         <span className="text-[11px] text-white/20 font-medium mx-auto tracking-wide">Stride — Tuition Enquiries</span>
       </div>
-
-      {/* Mobile: stacked, Desktop: side by side */}
       <div className="flex flex-col sm:flex-row">
-        {/* Sidebar — hidden on very small screens */}
         <div className="hidden sm:flex w-[180px] flex-shrink-0 border-r border-white/[0.05] flex-col" style={{ background: "#060d1e" }}>
           <div className="px-3 py-2.5 border-b border-white/[0.05]">
             <div className="flex items-center gap-2 bg-white/[0.04] rounded-[8px] px-2.5 py-1.5">
@@ -81,10 +77,7 @@ function Mock1() {
             </div>
           ))}
         </div>
-
-        {/* Conversation */}
         <div className="flex-1 flex flex-col">
-          {/* Header */}
           <div className="flex items-center gap-2.5 px-4 py-2.5 border-b border-white/[0.05]" style={{ background: "#080f20" }}>
             <div className="w-7 h-7 rounded-full bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center text-[9px] font-bold flex-shrink-0">AM</div>
             <div className="flex-1 min-w-0">
@@ -99,8 +92,6 @@ function Mock1() {
               <span className="text-[9px] font-bold text-[#4ade80]">9.6</span>
             </div>
           </div>
-
-          {/* Messages */}
           <div className="px-4 py-3 flex flex-col gap-2">
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.side === "r" ? "justify-end" : "justify-start"}`}>
@@ -120,7 +111,6 @@ function Mock1() {
                 </div>
               </div>
             ))}
-            {/* Typing */}
             <div className="flex items-center gap-1.5">
               <div className="w-5 h-5 rounded-full bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center text-[7px] font-bold">AI</div>
               <div className="rounded-[10px] px-3 py-2 flex gap-1" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>
@@ -158,9 +148,7 @@ function Mock2() {
         <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
         <span className="text-[11px] text-white/20 font-medium mx-auto tracking-wide">Stride — Student Profile</span>
       </div>
-
       <div className="p-4 flex flex-col gap-4">
-        {/* Profile */}
         <div className="flex items-center gap-3">
           <div className="relative flex-shrink-0">
             <div className="w-12 h-12 rounded-[12px] bg-gradient-to-br from-pink-500 via-rose-500 to-orange-500 flex items-center justify-center text-[16px] font-black">AM</div>
@@ -179,8 +167,6 @@ function Mock2() {
             <div className="text-[8px] text-white/30 uppercase tracking-wider">AI Score</div>
           </div>
         </div>
-
-        {/* Journey */}
         <div>
           <div className="text-[9px] text-white/25 uppercase tracking-wider mb-2 font-semibold">Student Journey</div>
           <div className="flex items-center">
@@ -195,22 +181,14 @@ function Mock2() {
             ))}
           </div>
         </div>
-
-        {/* Stats */}
         <div className="grid grid-cols-3 gap-2">
-          {[
-            { v: "S$480", l: "Monthly Value", c: "#4ade80" },
-            { v: "3", l: "Subjects", c: "#5b9aff" },
-            { v: "Oct 25", l: "PSLE Date", c: "#fbbf24" },
-          ].map((s) => (
+          {[{ v: "S$480", l: "Monthly Value", c: "#4ade80" }, { v: "3", l: "Subjects", c: "#5b9aff" }, { v: "Oct 25", l: "PSLE Date", c: "#fbbf24" }].map((s) => (
             <div key={s.l} className="rounded-[10px] px-2 py-2.5 text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)" }}>
               <div className="text-[14px] font-bold" style={{ color: s.c }}>{s.v}</div>
               <div className="text-[9px] text-white/30 mt-0.5">{s.l}</div>
             </div>
           ))}
         </div>
-
-        {/* Activity */}
         <div>
           <div className="text-[9px] text-white/25 uppercase tracking-wider mb-1.5 font-semibold">Recent Activity</div>
           <div className="flex flex-col gap-1.5">
@@ -245,9 +223,7 @@ function Mock3() {
         <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
         <span className="text-[11px] text-white/20 font-medium mx-auto tracking-wide">Stride — AI Enrolment Agent</span>
       </div>
-
       <div className="flex flex-col sm:flex-row">
-        {/* Stats sidebar — hidden on mobile */}
         <div className="hidden sm:flex w-[130px] flex-shrink-0 border-r border-white/[0.05] p-3 flex-col gap-3" style={{ background: "#060d1e" }}>
           <div className="rounded-[10px] p-2.5" style={{ background: "rgba(0,242,96,0.06)", border: "1px solid rgba(0,242,96,0.12)" }}>
             <div className="flex items-center gap-1.5 mb-1">
@@ -259,22 +235,14 @@ function Mock3() {
             </div>
             <div className="text-[9px] text-white/30">Enrolment Agent</div>
           </div>
-          {[
-            { label: "Response", value: "< 6s" },
-            { label: "Enquiries", value: "31" },
-            { label: "Trials", value: "9" },
-            { label: "Enrolled", value: "4" },
-          ].map((s) => (
+          {[{ label: "Response", value: "< 6s" }, { label: "Enquiries", value: "31" }, { label: "Trials", value: "9" }, { label: "Enrolled", value: "4" }].map((s) => (
             <div key={s.label} className="flex flex-col gap-0.5">
               <div className="text-[8px] text-white/25 uppercase tracking-wider">{s.label}</div>
               <div className="text-[13px] font-bold text-white/70">{s.value}</div>
             </div>
           ))}
         </div>
-
-        {/* Chat */}
         <div className="flex-1 flex flex-col">
-          {/* Mobile stats strip */}
           <div className="flex sm:hidden items-center gap-3 px-4 py-2 border-b border-white/[0.05]" style={{ background: "#060d1e" }}>
             <div className="flex items-center gap-1.5">
               <motion.span className="w-1.5 h-1.5 rounded-full bg-[#00f260]"
@@ -284,10 +252,8 @@ function Mock3() {
               <span className="text-[9px] font-bold text-[#00f260]">AI Active</span>
             </div>
             <span className="text-white/20 text-[10px]">·</span>
-            <span className="text-[9px] text-white/30">31 enquiries today · 4 enrolled</span>
+            <span className="text-[9px] text-white/30">31 enquiries · 4 enrolled today</span>
           </div>
-
-          {/* Contact */}
           <div className="flex items-center gap-2.5 px-4 py-2.5 border-b border-white/[0.05]">
             <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-[9px] font-bold flex-shrink-0">TL</div>
             <div className="flex-1 min-w-0">
@@ -296,8 +262,6 @@ function Mock3() {
             </div>
             <div className="text-[9px] font-bold px-2 py-0.5 rounded-full flex-shrink-0" style={{ background: "rgba(59,126,248,0.12)", color: "#5b9aff", border: "1px solid rgba(59,126,248,0.2)" }}>Score 7.8</div>
           </div>
-
-          {/* Messages */}
           <div className="px-3 py-3 flex flex-col gap-2">
             {messages.map((m, i) => (
               <div key={i} className={`flex items-end gap-2 ${m.side === "r" ? "justify-end" : "justify-start"}`}>
@@ -323,29 +287,18 @@ function Mock3() {
               </div>
             ))}
           </div>
-
-          {/* ── ENROLMENT CONFIRMED — always visible ── */}
           <div
             className="mx-3 mb-3 rounded-[12px] p-3 flex items-center gap-3"
-            style={{
-              background: "linear-gradient(135deg, rgba(0,242,96,0.08), rgba(59,126,248,0.06))",
-              border: "1px solid rgba(0,242,96,0.25)",
-            }}
+            style={{ background: "linear-gradient(135deg, rgba(0,242,96,0.08), rgba(59,126,248,0.06))", border: "1px solid rgba(0,242,96,0.25)" }}
           >
-            <div
-              className="w-9 h-9 rounded-[10px] flex items-center justify-center text-[14px] font-black flex-shrink-0"
-              style={{ background: "linear-gradient(135deg, #00c853, #3b7ef8)" }}
-            >
-              ✓
-            </div>
+            <div className="w-9 h-9 rounded-[10px] flex items-center justify-center text-[14px] font-black flex-shrink-0"
+              style={{ background: "linear-gradient(135deg, #00c853, #3b7ef8)" }}>✓</div>
             <div className="flex-1 min-w-0">
               <div className="text-[11px] font-bold text-white">Enrolment confirmed</div>
               <div className="text-[10px] text-white/50 mt-0.5">P5 Science · Sat 11am · GIRO sent</div>
             </div>
-            <div
-              className="text-[9px] font-bold px-2 py-1 rounded-full flex-shrink-0 whitespace-nowrap"
-              style={{ background: "rgba(0,242,96,0.12)", color: "#00f260", border: "1px solid rgba(0,242,96,0.2)" }}
-            >
+            <div className="text-[9px] font-bold px-2 py-1 rounded-full flex-shrink-0 whitespace-nowrap"
+              style={{ background: "rgba(0,242,96,0.12)", color: "#00f260", border: "1px solid rgba(0,242,96,0.2)" }}>
               This Sat
             </div>
           </div>
@@ -355,7 +308,7 @@ function Mock3() {
   );
 }
 
-// ── PANELS — after all Mocks ─────────────────────────────
+// ── PANELS ───────────────────────────────────────────────
 const panels = [<Mock1 key={0} />, <Mock2 key={1} />, <Mock3 key={2} />];
 
 // ── MAIN ─────────────────────────────────────────────────
@@ -403,10 +356,7 @@ export default function FeatureCarousel() {
 
   const onPointerUp = useCallback(() => {
     if (longPressRef.current) clearTimeout(longPressRef.current);
-    if (isLongPress.current) {
-      resume();
-      isLongPress.current = false;
-    }
+    if (isLongPress.current) { resume(); isLongPress.current = false; }
   }, [resume]);
 
   useEffect(() => {
@@ -451,22 +401,59 @@ export default function FeatureCarousel() {
         )}
       </AnimatePresence>
 
-      <div className="max-w-[1100px] mx-auto px-[clamp(16px,4vw,64px)] py-[clamp(60px,8vw,130px)]">
+      <div
+        className="max-w-[1100px] mx-auto"
+        style={{ padding: "clamp(60px,8vw,130px) clamp(16px,4vw,64px)" }}
+      >
+        {/* ── HEADER ── */}
+        <div className="mb-12 sm:mb-16">
+          <div
+            className="flex items-center gap-3 mb-4"
+            style={{
+              backgroundImage: "linear-gradient(135deg, #5b9aff, #00f260)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              fontSize: "11px",
+              fontWeight: 700,
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+            }}
+          >
+            <span className="w-5 h-px flex-shrink-0" style={{ background: "#3b7ef8" }} />
+            Platform
+          </div>
+          <h2
+            style={{
+              fontSize: "clamp(36px,5vw,64px)",
+              fontWeight: 800,
+              letterSpacing: "-0.04em",
+              lineHeight: 1.05,
+              color: "white",
+              marginBottom: "12px",
+            }}
+          >
+            How Stride Works
+          </h2>
+          <p
+            style={{
+              fontSize: "clamp(14px,1.5vw,16px)",
+              color: "rgba(180,188,210,0.5)",
+              fontWeight: 400,
+              lineHeight: 1.7,
+              maxWidth: 420,
+            }}
+          >
+            Three steps that turn every enquiry into a closed deal — automatically.
+          </p>
+        </div>
 
-        {/* Mobile: stacked layout / Desktop: side by side */}
+        {/* ── LAYOUT ── */}
         <div className="flex flex-col lg:grid lg:gap-[80px] lg:items-center" style={{ gridTemplateColumns: "340px 1fr" }}>
 
           {/* LEFT */}
           <div className="relative mb-10 lg:mb-0">
-            <div
-              className="text-[10.5px] font-bold tracking-[0.12em] uppercase mb-8"
-              style={{ backgroundImage: "linear-gradient(135deg, #5b9aff, #00f260)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
-            >
-              How Stride Works
-            </div>
-
             {/* Track line — desktop only */}
-            <div className="hidden lg:block absolute left-0 w-px bg-white/[0.06]" style={{ top: "44px", height: "calc(100% - 44px)" }}>
+            <div className="hidden lg:block absolute left-0 w-px bg-white/[0.06]" style={{ top: 0, height: "100%" }}>
               <motion.div
                 className="w-full rounded-full"
                 style={{ background: "linear-gradient(180deg, #3b7ef8, #00f260)", height: 88 }}
@@ -475,8 +462,8 @@ export default function FeatureCarousel() {
               />
             </div>
 
-            {/* Mobile: horizontal tab pills */}
-            <div className="flex lg:hidden gap-2 mb-8 overflow-x-auto pb-1">
+            {/* Mobile pills */}
+            <div className="flex lg:hidden gap-2 mb-6 overflow-x-auto pb-1">
               {tabs.map((tab, i) => {
                 const isActive = active === i;
                 return (
@@ -488,6 +475,7 @@ export default function FeatureCarousel() {
                       background: isActive ? "linear-gradient(135deg, rgba(59,126,248,0.2), rgba(0,242,96,0.1))" : "rgba(255,255,255,0.04)",
                       border: isActive ? "1px solid rgba(59,126,248,0.35)" : "1px solid rgba(255,255,255,0.08)",
                       color: isActive ? "#fff" : "rgba(255,255,255,0.45)",
+                      minHeight: 40,
                     }}
                   >
                     {tab.num} {tab.label}
@@ -496,18 +484,27 @@ export default function FeatureCarousel() {
               })}
             </div>
 
-            {/* Desktop: vertical list */}
+            {/* Desktop vertical list */}
             <div className="hidden lg:flex flex-col gap-8 pl-5">
               {tabs.map((tab, i) => {
                 const isActive = active === i;
                 return (
                   <button key={i} onClick={() => handleTabClick(i)} className="text-left transition-all duration-300">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-[11px] font-bold tracking-[0.1em] uppercase transition-colors duration-300" style={{ color: isActive ? "#00f260" : "rgba(255,255,255,0.25)" }}>
+                      <span
+                        className="text-[11px] font-bold tracking-[0.1em] uppercase transition-colors duration-300"
+                        style={{ color: isActive ? "#00f260" : "rgba(255,255,255,0.25)" }}
+                      >
                         {tab.num}
                       </span>
                     </div>
-                    <div className="text-[22px] font-bold leading-[1.25] tracking-[-0.02em] transition-all duration-300" style={{ color: isActive ? "#ffffff" : "rgba(255,255,255,0.45)" }}>
+                    <div
+                      className="font-bold leading-[1.25] tracking-[-0.02em] transition-all duration-300"
+                      style={{
+                        fontSize: "clamp(18px,2vw,22px)",
+                        color: isActive ? "#ffffff" : "rgba(255,255,255,0.45)",
+                      }}
+                    >
                       {tab.label}
                     </div>
                     {isActive && (
@@ -515,8 +512,8 @@ export default function FeatureCarousel() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         transition={{ duration: 0.35 }}
-                        className="text-[15px] leading-[1.78] mt-3 font-normal"
-                        style={{ color: "rgba(255,255,255,0.55)" }}
+                        className="leading-[1.78] mt-3 font-normal"
+                        style={{ fontSize: "clamp(13px,1.4vw,15px)", color: "rgba(255,255,255,0.55)" }}
                       >
                         {tab.body}
                       </motion.div>
@@ -537,7 +534,7 @@ export default function FeatureCarousel() {
               })}
             </div>
 
-            {/* Mobile: active tab body text */}
+            {/* Mobile active body text */}
             <div className="lg:hidden">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -546,8 +543,8 @@ export default function FeatureCarousel() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.3 }}
-                  className="text-[14px] leading-[1.75] mb-6"
-                  style={{ color: "rgba(255,255,255,0.5)" }}
+                  className="leading-[1.75] mb-6"
+                  style={{ fontSize: "clamp(13px,1.5vw,15px)", color: "rgba(255,255,255,0.5)" }}
                 >
                   {tabs[active].body}
                 </motion.div>
@@ -555,7 +552,7 @@ export default function FeatureCarousel() {
             </div>
           </div>
 
-          {/* RIGHT: Mock panel */}
+          {/* RIGHT: Floating mock */}
           <div className="relative w-full">
             <AnimatePresence mode="wait">
               <motion.div
@@ -565,14 +562,11 @@ export default function FeatureCarousel() {
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               >
-                {/* Desktop: floating 3D / Mobile: flat */}
                 <motion.div
                   animate={paused ? { y: 0 } : { y: [0, -8, 0] }}
                   transition={{ duration: 5, repeat: paused ? 0 : Infinity, ease: "easeInOut" }}
                   className="lg:rotate-[1deg]"
-                  style={{
-                    filter: "drop-shadow(0 30px 60px rgba(59,126,248,0.12)) drop-shadow(0 10px 30px rgba(0,0,0,0.4))",
-                  }}
+                  style={{ filter: "drop-shadow(0 30px 60px rgba(59,126,248,0.12)) drop-shadow(0 10px 30px rgba(0,0,0,0.4))" }}
                 >
                   {panels[active]}
                 </motion.div>
