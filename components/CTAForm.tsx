@@ -60,9 +60,11 @@ export default function CTAForm() {
   const inputCls = "w-full bg-white/[0.04] border border-white/[0.065] rounded-[10px] px-4 py-3 text-[13.5px] font-normal text-[var(--text)] placeholder-[var(--t3)] focus:border-[rgba(59,126,248,0.5)] focus:bg-[rgba(59,126,248,0.04)] transition-all duration-200 outline-none appearance-none";
 
   return (
-    <section id="cta" className="section-cta bg-[#060E24] border-t border-white/[0.065]">
-      <div className="max-w-[1100px] mx-auto px-[clamp(20px,4vw,64px)] py-[clamp(80px,10vw,130px)]">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-[90px] items-center">
+  <section id="cta" className="section-cta border-t border-white/[0.065]"
+    style={{ background: "#060E24", padding: "clamp(60px,8vw,130px) clamp(20px,5vw,64px)" }}
+  >
+    <div className="max-w-[1100px] mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-[90px] items-center">
 
           {/* Left copy */}
           <motion.div

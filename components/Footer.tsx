@@ -51,12 +51,14 @@ export default function Footer() {
     <footer className="border-t border-white/[0.065] px-[clamp(20px,4vw,64px)] pt-[clamp(48px,6vw,80px)] pb-8">
       <div className="max-w-[1100px] mx-auto">
         {/* Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
+        <div className="grid gap-8 sm:gap-10 mb-10 sm:mb-12"
+  style={{ gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))" }}
+>
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <div className="mb-3">
               <Image
-                src="/images/stride-logo.png"
+                src="/images/strideLogoDark.png"
                 alt="Stride"
                 width={100}
                 height={28}
@@ -110,7 +112,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-white/[0.065] pt-6 flex items-center justify-between flex-wrap gap-3">
+       <div className="border-t border-white/[0.065] pt-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-center">
           <span className="text-[12px] text-[var(--t3)]">
             © 2026 AceAI Pte Ltd · UEN: 202548336W · contact@aceai.sg
           </span>

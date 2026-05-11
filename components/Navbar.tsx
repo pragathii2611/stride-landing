@@ -48,22 +48,41 @@ export default function Navbar() {
           box-shadow: 0 0 16px rgba(59,126,248,0.3), 0 0 32px rgba(0,242,96,0.1);
           transition: box-shadow 0.3s ease, transform 0.2s ease;
           color: white;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
         }
         .nav-btn-primary:hover {
           box-shadow: 0 0 24px rgba(59,126,248,0.5), 0 0 48px rgba(0,242,96,0.2);
           transform: translateY(-1px);
         }
-        .mobile-menu-link {
-          display: block;
-          padding: 12px 16px;
+        .nav-link {
+          padding: 8px 14px;
           border-radius: 10px;
+          font-size: 14px;
+          font-weight: 500;
+          color: rgba(180,188,210,0.85);
+          text-decoration: none;
+          transition: all 0.2s ease;
+          white-space: nowrap;
+          letter-spacing: -0.01em;
+        }
+        .nav-link:hover {
+          color: white;
+          background: rgba(255,255,255,0.07);
+        }
+        .mobile-link {
+          display: block;
+          padding: 14px 16px;
+          border-radius: 12px;
           font-size: 15px;
           font-weight: 500;
           color: rgba(180,188,210,0.85);
           text-decoration: none;
-          transition: all 0.2s;
+          transition: all 0.2s ease;
+          letter-spacing: -0.01em;
         }
-        .mobile-menu-link:hover {
+        .mobile-link:hover, .mobile-link:active {
           color: white;
           background: rgba(255,255,255,0.06);
         }
@@ -73,150 +92,161 @@ export default function Navbar() {
         {visible && (
           <motion.div
             key="navbar"
-            initial={{ y: -80, opacity: 0 }}
+            initial={{ y: -90, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -80, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed top-0 left-0 right-0 z-[500] px-3 pt-3 md:px-5 md:pt-4"
+            exit={{ y: -90, opacity: 0 }}
+            transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed top-0 left-0 right-0 z-[500]"
+            style={{ padding: "14px clamp(12px,3vw,24px) 0" }}
           >
-            {/* Main pill */}
-            <div
-              className="mx-auto"
-              style={{ maxWidth: 1160 }}
-            >
+            <div className="mx-auto" style={{ maxWidth: 1180 }}>
+
+              {/* ── MAIN PILL ── */}
               <div
-                className="flex items-center h-[52px] md:h-[56px] px-4 md:px-6 rounded-[16px]"
+                className="flex items-center"
                 style={{
-                  background: "rgba(8,15,32,0.85)",
-                  backdropFilter: "blur(28px)",
-                  WebkitBackdropFilter: "blur(28px)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04)",
+                  height: "clamp(58px,7vw,68px)",
+                  padding: "0 clamp(16px,3vw,28px)",
+                  borderRadius: "24px",
+                  background: "rgba(8,15,32,0.88)",
+                  backdropFilter: "blur(32px)",
+                  WebkitBackdropFilter: "blur(32px)",
+                  border: "1px solid rgba(255,255,255,0.09)",
+                  boxShadow: "0 8px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05)",
                 }}
               >
                 {/* Logo */}
-                <a href="#" className="flex-shrink-0 mr-6 md:mr-8">
-                  <Image
-                    src="/images/strideLogoDark.png"
-                    alt="Stride"
-                    width={110}
-                    height={30}
-                    style={{
-                      width: "auto",
-                      height: "28px",
-                      objectFit: "contain",
-                      filter: "brightness(0) invert(1)",
-                    }}
-                    priority
-                    unoptimized
-                  />
-                </a>
+                
+               <a href="#"
+  className="flex items-center flex-shrink-0"
+  style={{ marginRight: "clamp(20px,4vw,40px)" }}
+>
+  <img
+    src="/images/strideLogoDark.png"
+    alt="Stride"
+    style={{
+      width: "auto",
+      height: "clamp(28px,4vw,36px)",
+      objectFit: "contain",
+      display: "block",
+    }}
+  />
+</a>
 
-                {/* Desktop nav links */}
-                <ul className="hidden md:flex items-center list-none flex-1 justify-center gap-1">
+                {/* Desktop nav links — centered */}
+                <ul
+                  className="hidden md:flex items-center list-none flex-1 justify-center"
+                  style={{ gap: "4px" }}
+                >
                   {navLinks.map(([label, href]) => (
                     <li key={label}>
-                      <a
-                        href={href}
-                        className="px-3.5 py-2 rounded-[8px] text-[13.5px] font-medium tracking-[-0.01em] whitespace-nowrap transition-all duration-200"
-                        style={{ color: "rgba(180,188,210,0.85)" }}
-                        onMouseEnter={(e) => {
-                          const el = e.currentTarget as HTMLElement;
-                          el.style.color = "white";
-                          el.style.background = "rgba(255,255,255,0.06)";
-                        }}
-                        onMouseLeave={(e) => {
-                          const el = e.currentTarget as HTMLElement;
-                          el.style.color = "rgba(180,188,210,0.85)";
-                          el.style.background = "transparent";
-                        }}
-                      >
-                        {label}
-                      </a>
+                      <a href={href} className="nav-link">{label}</a>
                     </li>
                   ))}
                 </ul>
-
-                {/* Desktop right side */}
-                <div className="hidden md:flex items-center gap-3 ml-auto flex-shrink-0">
+                {/* Desktop right */}
+                <div className="hidden md:flex items-center flex-shrink-0" style={{ gap: "12px", marginLeft: "auto" }}>
                   <a
                     href="#cta"
-                    className="text-[13.5px] font-medium tracking-[-0.01em] whitespace-nowrap transition-colors duration-200 px-2"
+                    className="nav-link"
                     style={{ color: "rgba(180,188,210,0.85)" }}
-                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "white"; }}
-                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(180,188,210,0.85)"; }}
                   >
                     Log in
                   </a>
                   <a
                     href="#cta"
-                    className="nav-btn-primary px-4 py-2 rounded-[10px] text-[13.5px] font-semibold tracking-[-0.01em] whitespace-nowrap"
+                    className="nav-btn-primary"
+                    style={{
+                      padding: "10px 22px",
+                      borderRadius: "14px",
+                      fontSize: "14px",
+                      fontWeight: 600,
+                      letterSpacing: "-0.01em",
+                      whiteSpace: "nowrap",
+                    }}
                   >
                     Get Demo
                   </a>
                 </div>
 
-                {/* Mobile right side */}
-                <div className="flex md:hidden items-center gap-2 ml-auto flex-shrink-0">
+                <div className="flex md:hidden items-center flex-shrink-0" style={{ gap: "10px", marginLeft: "auto" }}>
                   <a
                     href="#cta"
-                    className="nav-btn-primary px-3.5 py-1.5 rounded-[9px] text-[13px] font-semibold"
+                    className="nav-btn-primary"
+                    style={{
+                      padding: "9px 18px",
+                      borderRadius: "12px",
+                      fontSize: "13px",
+                      fontWeight: 600,
+                    }}
                   >
                     Get Demo
                   </a>
                   {/* Hamburger */}
                   <button
                     onClick={() => setMobileOpen((o) => !o)}
-                    className="w-9 h-9 flex flex-col items-center justify-center gap-[5px] rounded-[8px] transition-all duration-200"
-                    style={{
-                      background: mobileOpen ? "rgba(59,126,248,0.12)" : "rgba(255,255,255,0.05)",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                    }}
                     aria-label="Toggle menu"
+                    style={{
+                      width: 42,
+                      height: 42,
+                      borderRadius: "12px",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "5px",
+                      background: mobileOpen ? "rgba(59,126,248,0.12)" : "rgba(255,255,255,0.05)",
+                      border: "1px solid rgba(255,255,255,0.09)",
+                      flexShrink: 0,
+                    }}
                   >
                     <motion.span
-                      className="block w-4 h-px rounded-full bg-white"
-                      animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-                      transition={{ duration: 0.2 }}
+                      className="block rounded-full bg-white"
+                      style={{ width: 18, height: 1.5 }}
+                      animate={mobileOpen ? { rotate: 45, y: 6.5 } : { rotate: 0, y: 0 }}
+                      transition={{ duration: 0.22 }}
                     />
                     <motion.span
-                      className="block w-4 h-px rounded-full bg-white"
-                      animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-                      transition={{ duration: 0.2 }}
+                      className="block rounded-full bg-white"
+                      style={{ width: 18, height: 1.5 }}
+                      animate={mobileOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+                      transition={{ duration: 0.22 }}
                     />
                     <motion.span
-                      className="block w-4 h-px rounded-full bg-white"
-                      animate={mobileOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-                      transition={{ duration: 0.2 }}
+                      className="block rounded-full bg-white"
+                      style={{ width: 18, height: 1.5 }}
+                      animate={mobileOpen ? { rotate: -45, y: -6.5 } : { rotate: 0, y: 0 }}
+                      transition={{ duration: 0.22 }}
                     />
                   </button>
                 </div>
               </div>
 
-              {/* Mobile dropdown menu */}
+              {/* ── MOBILE DROPDOWN ── */}
               <AnimatePresence>
                 {mobileOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: -8, scale: 0.98 }}
+                    initial={{ opacity: 0, y: -10, scale: 0.97 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -8, scale: 0.98 }}
-                    transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                    className="mt-2 p-3 rounded-[16px]"
+                    exit={{ opacity: 0, y: -10, scale: 0.97 }}
+                    transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
                     style={{
-                      background: "rgba(8,15,32,0.95)",
-                      backdropFilter: "blur(28px)",
-                      WebkitBackdropFilter: "blur(28px)",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                      boxShadow: "0 16px 48px rgba(0,0,0,0.5)",
+                      marginTop: "8px",
+                      padding: "12px",
+                      borderRadius: "22px",
+                      background: "rgba(8,15,32,0.96)",
+                      backdropFilter: "blur(32px)",
+                      WebkitBackdropFilter: "blur(32px)",
+                      border: "1px solid rgba(255,255,255,0.09)",
+                      boxShadow: "0 20px 60px rgba(0,0,0,0.55)",
                     }}
                   >
-                    {/* Nav links */}
-                    <div className="flex flex-col gap-1 mb-3">
+                    <div style={{ display: "flex", flexDirection: "column", gap: "2px", marginBottom: "10px" }}>
                       {navLinks.map(([label, href]) => (
                         <a
                           key={label}
                           href={href}
-                          className="mobile-menu-link"
+                          className="mobile-link"
                           onClick={() => setMobileOpen(false)}
                         >
                           {label}
@@ -225,25 +255,41 @@ export default function Navbar() {
                     </div>
 
                     {/* Divider */}
-                    <div
-                      className="mb-3"
-                      style={{ height: "1px", background: "rgba(255,255,255,0.06)" }}
-                    />
+                    <div style={{ height: "1px", background: "rgba(255,255,255,0.07)", margin: "4px 0 12px" }} />
 
-                    {/* CTA buttons */}
-                    <div className="flex flex-col gap-2">
+                    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                       <a
                         href="#cta"
-                        className="block text-center py-3 rounded-[10px] text-[14px] font-medium transition-all duration-200"
-                        style={{ color: "rgba(180,188,210,0.85)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
                         onClick={() => setMobileOpen(false)}
+                        style={{
+                          display: "block",
+                          textAlign: "center",
+                          padding: "13px",
+                          borderRadius: "14px",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          color: "rgba(180,188,210,0.85)",
+                          background: "rgba(255,255,255,0.04)",
+                          border: "1px solid rgba(255,255,255,0.08)",
+                          textDecoration: "none",
+                          minHeight: 48,
+                        }}
                       >
                         Log in
                       </a>
                       <a
                         href="#cta"
-                        className="nav-btn-primary block text-center py-3 rounded-[10px] text-[14px] font-semibold"
+                        className="nav-btn-primary"
                         onClick={() => setMobileOpen(false)}
+                        style={{
+                          display: "block",
+                          textAlign: "center",
+                          padding: "13px",
+                          borderRadius: "14px",
+                          fontSize: "15px",
+                          fontWeight: 600,
+                          minHeight: 48,
+                        }}
                       >
                         Get Demo
                       </a>

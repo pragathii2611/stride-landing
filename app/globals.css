@@ -195,3 +195,40 @@ textarea:focus {
 .c-bar-animate {
   animation: cprog 7s linear forwards;
 }
+
+/* ── RESPONSIVE UTILITIES ── */
+@media (max-width: 768px) {
+  body {
+    cursor: auto !important;
+  }
+  * {
+    cursor: auto !important;
+  }
+}
+
+/* Touch tap highlight removal */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Smooth scroll on iOS */
+html {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent text size adjust on orientation change */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Better touch targets */
+button, a {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+nav a, nav button {
+  min-height: unset;
+  min-width: unset;
+}
