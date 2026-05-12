@@ -14,8 +14,8 @@ const clients = [
   {
     name: "Salesforce",
     icon: (
-      <svg width="18" height="14" viewBox="0 0 54 38" fill="none">
-        <path d="M22.5 4.5a8.5 8.5 0 0 1 6.1 2.6A11.5 11.5 0 0 1 36 5c6.4 0 11.5 5.2 11.5 11.5 0 .4 0 .8-.1 1.2A8 8 0 0 1 54 25a8 8 0 0 1-8 8H10a10 10 0 0 1-1.2-19.9A11 11 0 0 1 22.5 4.5z" fill="#00A1E0"/>
+      <svg width="20" height="14" viewBox="0 0 60 40" fill="none">
+        <path d="M25 5a12 12 0 0 1 8.5 3.5A16 16 0 0 1 44 6c9 0 16 7 16 16s-7 16-16 16H10A14 14 0 0 1 10 10a14 14 0 0 1 4.5.75A12 12 0 0 1 25 5z" fill="#00A1E0"/>
       </svg>
     ),
   },
@@ -40,21 +40,10 @@ const clients = [
   {
     name: "Meta",
     icon: (
-      <svg width="18" height="10" viewBox="0 0 60 32" fill="none">
-        <path d="M5 27C5 29.2 6.3 31 8.5 31c1.8 0 2.8-.9 4.1-2.8L18 20l-5.8-9.4C10.9 8.5 9.6 8 8.5 8 6.3 8 5 9.8 5 12v15z" fill="url(#mg1)"/>
-        <path d="M55 27V12c0-2.2-1.3-4-3.5-4-1.1 0-2.4.5-3.7 2.6L42 20l5.8 8.2c1.3 1.9 2.3 2.8 4.1 2.8C54 31 55 29.2 55 27z" fill="url(#mg2)"/>
-        <path d="M30 13.5c-3 0-5.5 3-7.5 6.5 2 3.5 4.5 6.5 7.5 6.5s5.5-3 7.5-6.5c-2-3.5-4.5-6.5-7.5-6.5z" fill="url(#mg3)"/>
-        <defs>
-          <linearGradient id="mg1" x1="0" y1="0" x2="0" y2="1">
-            <stop stopColor="#0081FB"/><stop offset="1" stopColor="#0064E1"/>
-          </linearGradient>
-          <linearGradient id="mg2" x1="0" y1="0" x2="0" y2="1">
-            <stop stopColor="#0081FB"/><stop offset="1" stopColor="#0064E1"/>
-          </linearGradient>
-          <linearGradient id="mg3" x1="0" y1="0" x2="1" y2="0">
-            <stop stopColor="#0064E1"/><stop offset="1" stopColor="#0081FB"/>
-          </linearGradient>
-        </defs>
+      <svg width="20" height="12" viewBox="0 0 60 32" fill="none">
+        <path d="M5 27C5 29.2 6.3 31 8.5 31c1.8 0 2.8-.9 4.1-2.8L18 20l-5.8-9.4C10.9 8.5 9.6 8 8.5 8 6.3 8 5 9.8 5 12v15z" fill="#0081FB"/>
+        <path d="M55 27V12c0-2.2-1.3-4-3.5-4-1.1 0-2.4.5-3.7 2.6L42 20l5.8 8.2c1.3 1.9 2.3 2.8 4.1 2.8C54 31 55 29.2 55 27z" fill="#0081FB"/>
+        <path d="M30 13.5c-3 0-5.5 3-7.5 6.5 2 3.5 4.5 6.5 7.5 6.5s5.5-3 7.5-6.5c-2-3.5-4.5-6.5-7.5-6.5z" fill="#0081FB"/>
       </svg>
     ),
   },
@@ -79,7 +68,7 @@ const clients = [
     ),
   },
   {
-    name: "Email",
+    name: "Gmail",
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ea4335" strokeWidth="2">
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -94,32 +83,40 @@ const doubled = [...clients, ...clients];
 export default function ClientTicker() {
   return (
     <motion.div
-      className="section-ticker py-[clamp(40px,6vw,72px)] relative z-[2]"
+      className="py-[clamp(40px,6vw,72px)] relative z-[2]"
+      style={{ background: "#040B1E" }}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.8 }}
     >
-      <p className="text-center text-[11.5px] font-semibold tracking-[0.1em] uppercase text-[var(--t3)] mb-6">
+      <p className="text-center text-[11px] font-semibold tracking-[0.12em] uppercase mb-6"
+        style={{ color: "rgba(255,255,255,0.18)" }}
+      >
         Integrates with your favourite tools
       </p>
-
       <div className="relative w-full overflow-hidden">
-        {/* Fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#020611] to-transparent z-[2] pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#020611] to-transparent z-[2] pointer-events-none" />
-
+        <div className="absolute left-0 top-0 bottom-0 w-24 z-[2] pointer-events-none"
+          style={{ background: "linear-gradient(90deg, #040B1E, transparent)" }}
+        />
+        <div className="absolute right-0 top-0 bottom-0 w-24 z-[2] pointer-events-none"
+          style={{ background: "linear-gradient(-90deg, #040B1E, transparent)" }}
+        />
         <div className="flex w-max animate-scroll-left ticker-track">
           {doubled.map((item, i) => (
             <div key={i} className="flex items-center">
-              <div className="flex items-center gap-3 px-10 py-2.5 whitespace-nowrap text-[14px] font-semibold text-[var(--t2)] hover:text-[var(--text)] transition-colors duration-200 group">
-                <div className="w-[34px] h-[34px] rounded-[8px] flex items-center justify-center bg-white/[0.028] border border-white/[0.065] flex-shrink-0 group-hover:border-white/[0.11] transition-colors duration-200">
+              <div className="flex items-center gap-3 px-8 py-2.5 whitespace-nowrap text-[14px] font-medium group transition-colors duration-200"
+                style={{ color: "rgba(255,255,255,0.35)" }}
+              >
+                <div className="w-[34px] h-[34px] rounded-[8px] flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200"
+                  style={{ background: "rgba(255,255,255,0.04)", boxShadow: "0 2px 12px rgba(0,0,0,0.3)" }}
+                >
                   {item.icon}
                 </div>
-                {item.name}
+                <span className="group-hover:text-white transition-colors duration-200">{item.name}</span>
               </div>
               {i < doubled.length - 1 && (
-                <span className="text-[var(--t3)] opacity-20 text-xl px-2 leading-none">·</span>
+                <span style={{ color: "rgba(255,255,255,0.08)", fontSize: 20, padding: "0 4px", lineHeight: 1 }}>·</span>
               )}
             </div>
           ))}

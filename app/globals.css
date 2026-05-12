@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  --bg: #040B1E;
+  --bg1: #060E24;
   --blue: #3b7ef8;
   --blue-dim: rgba(59, 126, 248, 0.07);
   --blue-mid: rgba(59, 126, 248, 0.14);
@@ -11,23 +13,24 @@
   --neon: #00f260;
   --neon-dim: rgba(0, 242, 96, 0.07);
   --neon-glow: rgba(0, 242, 96, 0.25);
-  --gradient: linear-gradient(135deg, #3b7ef8, #00f260);
-  --gradient-glow: 0 0 24px rgba(59,126,248,0.3), 0 0 48px rgba(0,242,96,0.15);
   --text: #eef0fa;
   --t2: #7a84a8;
   --t3: #323a58;
-  --gb: rgba(255, 255, 255, 0.065);
-  --gbh: rgba(255, 255, 255, 0.11);
-  --glass: rgba(255, 255, 255, 0.028);
+  --gb: rgba(255, 255, 255, 0.032);
+  --gbh: rgba(255, 255, 255, 0.06);
+  --glass: rgba(255, 255, 255, 0.018);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
-  background: #020611;
+  background: #040B1E;
   color: var(--text);
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -35,200 +38,117 @@ body {
   cursor: none;
 }
 
-/* Hide default cursor on all interactive elements */
-a,
-button,
-input,
-select,
-textarea,
-[role="button"] {
+@media (max-width: 768px) {
+  body { cursor: auto !important; }
+  * { cursor: auto !important; }
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+a, button, input, select, [role="button"] {
   cursor: none !important;
 }
+@media (max-width: 768px) {
+  a, button, input, select, [role="button"] {
+    cursor: auto !important;
+  }
+}
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: #020611;
-}
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #040B1E; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(59, 126, 248, 0.3);
+  background: rgba(59,126,248,0.2);
   border-radius: 2px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(59, 126, 248, 0.5);
-}
 
-/* Noise overlay */
+/* ── NOISE ── */
 body::after {
-  content: "";
+  content: '';
   position: fixed;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.022'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 9989;
-  opacity: 0.4;
+  opacity: 0.35;
 }
 
-/* Grid background pattern */
+/* ── GRID BG (hero only) ── */
 .bg-grid {
-  background-image: linear-gradient(
-      rgba(59, 126, 248, 0.04) 1px,
-      transparent 1px
-    ),
-    linear-gradient(90deg, rgba(59, 126, 248, 0.04) 1px, transparent 1px);
+  background-image:
+    linear-gradient(rgba(59,126,248,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,126,248,0.03) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
-/* Glass card utility */
+/* ── DOT GRID (counter + pricing) ── */
+.dot-grid {
+  background-color: #040B1E;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.09) 1px,
+    transparent 1px
+  );
+  background-size: 26px 26px;
+}
+
+/* ── GLASS ── */
 .glass {
-  background: rgba(255, 255, 255, 0.028);
+  background: rgba(255,255,255,0.018);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.065);
 }
 
-.glass-hover:hover {
-  border-color: rgba(255, 255, 255, 0.11) !important;
-}
+/* ── TICKER ── */
+.ticker-track:hover { animation-play-state: paused; }
 
-/* Ticker pause on hover */
-.ticker-track:hover {
-  animation-play-state: paused;
-}
-
-/* Flip counter card */
+/* ── FLIP CARD ── */
 .f-card::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 50%;
   left: 0;
   right: 0;
   height: 1px;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0,0,0,0.6);
   z-index: 10;
 }
 
-/* Scrollbar for select */
 select option {
-  background: #060e24;
+  background: #040B1E;
   color: #eef0fa;
 }
 
-/* Input focus ring */
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-  border-color: rgba(59, 126, 248, 0.5) !important;
-  background: rgba(59, 126, 248, 0.04) !important;
-}
-
-/* Animations */
+/* ── ANIMATIONS ── */
 @keyframes scrollLeft {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
-
 @keyframes pulseDot {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.35;
-    transform: scale(0.65);
-  }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.35; transform: scale(0.65); }
 }
-
 @keyframes livePulse {
-  0%,
-  100% {
-    opacity: 1;
-    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5);
-  }
-  60% {
-    opacity: 0.6;
-    box-shadow: 0 0 0 8px rgba(74, 222, 128, 0);
-  }
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74,222,128,0.5); }
+  60%       { opacity: 0.6; box-shadow: 0 0 0 8px rgba(74,222,128,0); }
 }
-
 @keyframes flowLine {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
-
 @keyframes cprog {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
+  from { width: 0; }
+  to   { width: 100%; }
+}
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-.animate-scroll-left {
-  animation: scrollLeft 28s linear infinite;
-}
-.animate-scroll-left-slow {
-  animation: scrollLeft 48s linear infinite;
-}
-.animate-pulse-dot {
-  animation: pulseDot 2s ease-in-out infinite;
-}
-.animate-live-pulse {
-  animation: livePulse 1.8s ease-in-out infinite;
-}
-.animate-flow-line {
-  animation: flowLine 2.5s linear infinite;
-}
-.c-bar-animate {
-  animation: cprog 7s linear forwards;
-}
-
-/* ── RESPONSIVE UTILITIES ── */
-@media (max-width: 768px) {
-  body {
-    cursor: auto !important;
-  }
-  * {
-    cursor: auto !important;
-  }
-}
-
-/* Touch tap highlight removal */
-* {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Smooth scroll on iOS */
-html {
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Prevent text size adjust on orientation change */
-html {
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
-
-/* Better touch targets */
-button, a {
-  min-height: 44px;
-  min-width: 44px;
-}
-
-nav a, nav button {
-  min-height: unset;
-  min-width: unset;
-}
+.animate-scroll-left      { animation: scrollLeft 28s linear infinite; }
+.animate-scroll-left-slow { animation: scrollLeft 48s linear infinite; }
+.animate-pulse-dot        { animation: pulseDot 2s ease-in-out infinite; }
+.animate-live-pulse       { animation: livePulse 1.8s ease-in-out infinite; }
+.animate-flow-line        { animation: flowLine 2.5s linear infinite; }
+.c-bar-animate            { animation: cprog 7s linear forwards; }

@@ -1,57 +1,91 @@
 "use client";
 
-import { useEffect } from "react";
-import { useMotionValue, useSpring, motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 export default function Cursor() {
-  const mouseX = useMotionValue(-200);
-  const mouseY = useMotionValue(-200);
-
-  const dotX = useSpring(mouseX, { stiffness: 600, damping: 40, mass: 0.3 });
-  const dotY = useSpring(mouseY, { stiffness: 600, damping: 40, mass: 0.3 });
-
-  const glowX = useSpring(mouseX, { stiffness: 80, damping: 20, mass: 0.8 });
-  const glowY = useSpring(mouseY, { stiffness: 80, damping: 20, mass: 0.8 });
+  const dotRef = useRef<HTMLDivElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Skip on touch devices
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
+    let mouseX = -200, mouseY = -200;
+    let glowX = -200, glowY = -200;
+    let rafId: number;
+
     const onMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
+      mouseX = e.clientX;
+      mouseY = e.clientY;
     };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, [mouseX, mouseY]);
+
+    const tick = () => {
+      // Dot — instant, no lag
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+      }
+
+      // Glow — smooth lerp, trails slightly behind
+      glowX += (mouseX - glowX) * 0.06;
+      glowY += (mouseY - glowY) * 0.06;
+
+      if (glowRef.current) {
+        glowRef.current.style.transform = `translate(${glowX - 240}px, ${glowY - 240}px)`;
+      }
+
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const onLeave = () => {
+      if (dotRef.current) dotRef.current.style.opacity = "0";
+      if (glowRef.current) glowRef.current.style.opacity = "0";
+    };
+
+    const onEnter = () => {
+      if (dotRef.current) dotRef.current.style.opacity = "1";
+      if (glowRef.current) glowRef.current.style.opacity = "1";
+    };
+
+    window.addEventListener("mousemove", onMove, { passive: true });
+    document.addEventListener("mouseleave", onLeave);
+    document.addEventListener("mouseenter", onEnter);
+
+    rafId = requestAnimationFrame(tick);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseleave", onLeave);
+      document.removeEventListener("mouseenter", onEnter);
+    };
+  }, []);
 
   return (
     <>
-      {/* Ambient glow — slow, large, muted */}
-      <motion.div
-        className="fixed pointer-events-none z-[9990] rounded-full"
+      {/* Glow — trails behind */}
+      <div
+        ref={glowRef}
+        className="fixed top-0 left-0 pointer-events-none z-[9990] rounded-full"
         style={{
-          x: glowX,
-          y: glowY,
-          translateX: "-50%",
-          translateY: "-50%",
           width: 480,
           height: 480,
-          background:
-            "radial-gradient(circle, rgba(59,126,248,0.07) 0%, transparent 35%)",
+          background: "radial-gradient(circle, rgba(59,126,248,0.07) 0%, transparent 65%)",
+          transition: "opacity 0.3s ease",
+          willChange: "transform",
         }}
       />
 
-      {/* Dot */}
-      <motion.div
-        className="fixed pointer-events-none z-[9999] rounded-full"
+      {/* Dot — instant */}
+      <div
+        ref={dotRef}
+        className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full"
         style={{
-          x: dotX,
-          y: dotY,
-          translateX: "-50%",
-          translateY: "-50%",
-          width: 10,
-          height: 10,
+          width: 8,
+          height: 8,
           background: "rgba(255,255,255,0.9)",
-          boxShadow:
-            "0 0 10px 2px rgba(91,154,255,0.35), 0 0 24px 4px rgba(59,126,248,0.15)",
+          boxShadow: "0 0 10px 2px rgba(91,154,255,0.4), 0 0 24px 4px rgba(59,126,248,0.15)",
+          willChange: "transform",
+          transition: "opacity 0.3s ease",
         }}
       />
     </>
