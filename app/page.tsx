@@ -5,6 +5,7 @@ import ClientTicker from "@/components/ClientTicker";
 import FlipCounter from "@/components/FlipCounter";
 import FeatureCarousel from "@/components/FeatureCarousel";
 import JourneySteps from "@/components/JourneySteps";
+import MacbookSection from "@/components/MacbookSection";
 import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
 import CTAForm from "@/components/CTAForm";
@@ -36,6 +37,7 @@ export default function Home() {
         <SectionWrap><FlipCounter /></SectionWrap>
         <SectionWrap><FeatureCarousel /></SectionWrap>
         <SectionWrap><JourneySteps /></SectionWrap>
+        <SectionWrap><MacbookSection /></SectionWrap>
         <SectionWrap><Pricing /></SectionWrap>
         <SectionWrap><Testimonials /></SectionWrap>
         <SectionWrap><CTAForm /></SectionWrap>
