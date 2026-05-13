@@ -17,6 +17,8 @@ function ChatWidget() {
   const [typing, setTyping] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const started = useRef(false);
+  const chatScrollRef = useRef<HTMLDivElement>(null);
+
 
   useEffect(() => {
     if (started.current) return;
@@ -35,9 +37,10 @@ function ChatWidget() {
   }, []);
 
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [visibleMessages, typing]);
-
+  if (chatScrollRef.current) {
+    chatScrollRef.current.scrollTop = chatScrollRef.current.scrollHeight;
+  }
+}, [visibleMessages, typing]);
   return (
     <div style={{
       position: "absolute",
@@ -586,7 +589,7 @@ export default function MacbookSection() {
         className="mx-auto rounded-[20px] overflow-hidden"
         style={{
           maxWidth: "min(1100px, 94vw)",
-          height: "clamp(500px, 70vh, 800px)",
+          height: "clamp(400px, 56.25vw, 687px)",
           boxShadow: "0 0 0 1px rgba(255,255,255,0.06), 0 40px 100px rgba(0,0,0,0.6), 0 0 80px rgba(59,126,248,0.1)",
           position: "relative",
         }}
