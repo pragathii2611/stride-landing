@@ -116,7 +116,7 @@ export default function CTAForm() {
     <section
       id="cta"
       style={{
-        background: "#040B1E",
+        background: "#020810",
         padding: "clamp(60px,8vw,120px) clamp(16px,5vw,64px)",
       }}
     >

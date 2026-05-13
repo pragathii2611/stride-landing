@@ -84,7 +84,7 @@ export default function ClientTicker() {
   return (
     <motion.div
       className="py-[clamp(40px,6vw,72px)] relative z-[2]"
-      style={{ background: "#040B1E" }}
+      style={{ background: "#020810" }}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-80px" }}
@@ -97,10 +97,10 @@ export default function ClientTicker() {
       </p>
       <div className="relative w-full overflow-hidden">
         <div className="absolute left-0 top-0 bottom-0 w-24 z-[2] pointer-events-none"
-          style={{ background: "linear-gradient(90deg, #040B1E, transparent)" }}
+          style={{ background: "linear-gradient(90deg, #020810, transparent)" }}
         />
         <div className="absolute right-0 top-0 bottom-0 w-24 z-[2] pointer-events-none"
-          style={{ background: "linear-gradient(-90deg, #040B1E, transparent)" }}
+          style={{ background: "linear-gradient(-90deg, #020810, transparent)" }}
         />
         <div className="flex w-max animate-scroll-left ticker-track">
           {doubled.map((item, i) => (

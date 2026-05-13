@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --bg: #040B1E;
+  --bg: #020810;
   --bg1: #060E24;
   --blue: #3b7ef8;
   --blue-dim: rgba(59, 126, 248, 0.07);
@@ -30,7 +30,7 @@ html {
 }
 
 body {
-  background: #040B1E;
+  background: #020810;
   color: var(--text);
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -56,7 +56,7 @@ a, button, input, select, [role="button"] {
 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: #040B1E; }
+::-webkit-scrollbar-track { background: #020810; }
 ::-webkit-scrollbar-thumb {
   background: rgba(59,126,248,0.2);
   border-radius: 2px;
@@ -83,13 +83,13 @@ body::after {
 
 /* ── DOT GRID (counter + pricing) ── */
 .dot-grid {
-  background-color: #040B1E;
+  background-color: #020810;
   background-image: radial-gradient(
     circle,
-    rgba(255, 255, 255, 0.09) 1px,
-    transparent 1px
+    rgba(255, 255, 255, 0.12) 1.5px,
+    transparent 1.5px
   );
-  background-size: 26px 26px;
+  background-size: 24px 24px;
 }
 
 /* ── GLASS ── */
@@ -115,7 +115,7 @@ body::after {
 }
 
 select option {
-  background: #040B1E;
+  background: #020810;
   color: #eef0fa;
 }
 

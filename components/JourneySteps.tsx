@@ -339,7 +339,7 @@ function AlternatingSteps({
                       width: centerW,
                       height: centerH,
                       fontSize: centerFontSize,
-                      background: "#040B1E",
+                      background: "#020810",
                       boxShadow: `0 0 0 1.5px ${step.color}66, 0 0 16px ${step.color}33`,
                       color: step.color,
                     }}
@@ -405,7 +405,7 @@ export default function JourneySteps() {
     <section
       ref={sectionRef}
       className="section-journey w-full"
-      style={{ background: "#040B1E", padding: "clamp(60px,8vw,120px) clamp(16px,5vw,64px)" }}
+      style={{ background: "#020810", padding: "clamp(60px,8vw,120px) clamp(16px,5vw,64px)" }}
     >
       <div className="max-w-[1000px] mx-auto">
 

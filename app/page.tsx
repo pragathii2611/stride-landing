@@ -30,7 +30,7 @@ export default function Home() {
       <Cursor />
       <ScrollGlow />
       <Navbar />
-      <main style={{ background: "#040B1E" }}>
+      <main style={{ background: "#020810" }}>
         <Hero />
         <SectionWrap><ClientTicker /></SectionWrap>
         <SectionWrap><FlipCounter /></SectionWrap>
