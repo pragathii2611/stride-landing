@@ -5,20 +5,18 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const conversation = [
   { from: "parent", text: "Hi! Do you have any P6 Math classes available on weekends?", delay: 0 },
-  { from: "bot", text: "Hi there! 👋 Yes, we do! We have Saturday 10am and Sunday 2pm slots for P6 Math. Both have 2 seats remaining. Which would suit your child better?", delay: 1200 },
-  { from: "parent", text: "Saturday 10am sounds good. What's the fee?", delay: 3200 },
-  { from: "bot", text: "The Saturday P6 Math class is S$280/month (4 lessons). Includes printed practice papers and access to our student portal. Would you like to book a free trial first?", delay: 4600 },
-  { from: "parent", text: "Yes please! How do I sign up for the trial?", delay: 6800 },
-  { from: "bot", text: "Great choice! 🎉 I'll need your child's name and your WhatsApp number to reserve the spot. Our team will confirm within 2 hours!", delay: 8000 },
+  { from: "bot", text: "Hi there! 👋 Yes, we do! We have Saturday 10am and Sunday 2pm slots for P6 Math. Both have 2 seats remaining. Which would suit your child better?", delay: 2000 },
+  { from: "parent", text: "Saturday 10am sounds good. What's the fee?", delay: 5500 },
+  { from: "bot", text: "The Saturday P6 Math class is S$280/month (4 lessons). Includes printed practice papers and access to our student portal. Would you like to book a free trial first?", delay: 8000 },
+  { from: "parent", text: "Yes please! How do I sign up for the trial?", delay: 12000 },
+  { from: "bot", text: "Great choice! 🎉 I'll need your child's name and your WhatsApp number to reserve the spot. Our team will confirm within 2 hours!", delay: 15000 },
 ];
 
 function ChatWidget() {
   const [visibleMessages, setVisibleMessages] = useState<number[]>([]);
   const [typing, setTyping] = useState(false);
-  const chatEndRef = useRef<HTMLDivElement>(null);
-  const started = useRef(false);
   const chatScrollRef = useRef<HTMLDivElement>(null);
-
+  const started = useRef(false);
 
   useEffect(() => {
     if (started.current) return;
@@ -37,10 +35,11 @@ function ChatWidget() {
   }, []);
 
   useEffect(() => {
-  if (chatScrollRef.current) {
-    chatScrollRef.current.scrollTop = chatScrollRef.current.scrollHeight;
-  }
-}, [visibleMessages, typing]);
+    if (chatScrollRef.current) {
+      chatScrollRef.current.scrollTop = chatScrollRef.current.scrollHeight;
+    }
+  }, [visibleMessages, typing]);
+
   return (
     <div style={{
       position: "absolute",
@@ -74,23 +73,30 @@ function ChatWidget() {
           </svg>
         </div>
         <div>
-          <div style={{ color: "white", fontWeight: 700, fontSize: "clamp(8px,1vw,13px)", lineHeight: 1.2 }}>BrightMinds Support</div>
+          <div style={{ color: "white", fontWeight: 700, fontSize: "clamp(8px,1vw,13px)", lineHeight: 1.2 }}>
+            BrightMinds Support
+          </div>
           <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
             <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#4ade80", display: "inline-block" }} />
-            <span style={{ color: "rgba(255,255,255,0.8)", fontSize: "clamp(6px,0.75vw,10px)" }}>Online · Replies instantly</span>
+            <span style={{ color: "rgba(255,255,255,0.8)", fontSize: "clamp(6px,0.75vw,10px)" }}>
+              Online · Replies instantly
+            </span>
           </div>
         </div>
         <div style={{ marginLeft: "auto", color: "rgba(255,255,255,0.7)", fontSize: "clamp(14px,1.5vw,20px)", lineHeight: 1 }}>×</div>
       </div>
 
       {/* Messages */}
-      <div style={{
-        flex: 1, overflowY: "auto",
-        padding: "clamp(8px,1vw,12px)",
-        display: "flex", flexDirection: "column",
-        gap: "clamp(4px,0.6vw,8px)",
-        background: "#f8fafc", scrollbarWidth: "none",
-      }}>
+      <div
+        ref={chatScrollRef}
+        style={{
+          flex: 1, overflowY: "auto",
+          padding: "clamp(8px,1vw,12px)",
+          display: "flex", flexDirection: "column",
+          gap: "clamp(4px,0.6vw,8px)",
+          background: "#f8fafc", scrollbarWidth: "none",
+        }}
+      >
         <div style={{
           alignSelf: "center", background: "#e2e8f0",
           borderRadius: 20, padding: "3px 10px",
@@ -123,8 +129,7 @@ function ChatWidget() {
               <div style={{
                 maxWidth: "78%",
                 padding: "clamp(5px,0.7vw,9px) clamp(7px,0.9vw,12px)",
-                borderRadius: msg.from === "parent"
-                  ? "14px 14px 4px 14px" : "14px 14px 14px 4px",
+                borderRadius: msg.from === "parent" ? "14px 14px 4px 14px" : "14px 14px 14px 4px",
                 background: msg.from === "parent"
                   ? "linear-gradient(135deg, #1a56db, #1e40af)" : "white",
                 color: msg.from === "parent" ? "white" : "#1e293b",
@@ -168,7 +173,6 @@ function ChatWidget() {
             </motion.div>
           )}
         </AnimatePresence>
-        <div ref={chatEndRef} />
       </div>
 
       {/* Input */}
@@ -219,45 +223,29 @@ function SchoolWebsite() {
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
         borderBottom: "1px solid rgba(0,0,0,0.12)",
-        display: "flex",
-        alignItems: "center",
+        display: "flex", alignItems: "center",
         height: "clamp(18px,2.2vw,28px)",
         padding: "0 clamp(8px,1.2vw,16px)",
-        flexShrink: 0,
-        gap: 0,
+        flexShrink: 0, gap: 0,
       }}>
-        {/* Apple logo */}
-<svg
-  viewBox="0 0 256 256"
-  style={{ width: "clamp(10px,1.3vw,16px)", height: "clamp(10px,1.3vw,16px)", marginRight: "clamp(8px,1.2vw,16px)", flexShrink: 0 }}
-  >
-  <path fill="#1d1d1f" d="M213.3 166.6c-4 8.9-5.9 12.9-11 20.7-7.2 10.9-17.3 24.5-29.9 24.6-11.2.1-14-7.3-29.2-7.2-15.1.1-18.3 7.3-29.5 7.2-12.5-.1-22.1-12.5-29.3-23.4-20.1-30.5-22.2-66.3-9.8-85.3 8.8-13.5 22.7-21.4 35.8-21.4 13.3 0 21.7 7.3 32.7 7.3 10.7 0 17.2-7.3 32.6-7.3 11.6 0 23.9 6.3 32.7 17.3-28.7 15.7-24 56.8 4.9 67.5zM167.7 64.3c5.6-7.2 9.9-17.3 8.3-27.6-9.1.6-19.7 6.4-25.9 13.9-5.6 6.8-10.3 17-8.5 26.9 10 .3 20.3-5.5 26.1-13.2z"/>
-</svg>
-
-        {/* Menu items */}
+        <svg viewBox="0 0 256 256" fill="#1d1d1f"
+          style={{ width: "clamp(10px,1.3vw,16px)", height: "clamp(10px,1.3vw,16px)", marginRight: "clamp(8px,1.2vw,16px)", flexShrink: 0 }}>
+          <path d="M213.3 166.6c-4 8.9-5.9 12.9-11 20.7-7.2 10.9-17.3 24.5-29.9 24.6-11.2.1-14-7.3-29.2-7.2-15.1.1-18.3 7.3-29.5 7.2-12.5-.1-22.1-12.5-29.3-23.4-20.1-30.5-22.2-66.3-9.8-85.3 8.8-13.5 22.7-21.4 35.8-21.4 13.3 0 21.7 7.3 32.7 7.3 10.7 0 17.2-7.3 32.6-7.3 11.6 0 23.9 6.3 32.7 17.3-28.7 15.7-24 56.8 4.9 67.5zM167.7 64.3c5.6-7.2 9.9-17.3 8.3-27.6-9.1.6-19.7 6.4-25.9 13.9-5.6 6.8-10.3 17-8.5 26.9 10 .3 20.3-5.5 26.1-13.2z"/>
+        </svg>
         {[
           { label: "Safari", bold: true },
-          { label: "File" },
-          { label: "Edit" },
-          { label: "View" },
-          { label: "History" },
-          { label: "Bookmarks" },
-          { label: "Window" },
-          { label: "Help" },
+          { label: "File" }, { label: "Edit" }, { label: "View" },
+          { label: "History" }, { label: "Bookmarks" }, { label: "Window" }, { label: "Help" },
         ].map((m) => (
           <span key={m.label} style={{
             fontSize: "clamp(8px,0.85vw,12px)",
             fontWeight: m.bold ? 600 : 400,
             color: "#1d1d1f",
             marginRight: "clamp(8px,1.1vw,14px)",
-            whiteSpace: "nowrap",
-            letterSpacing: "-0.01em",
+            whiteSpace: "nowrap", letterSpacing: "-0.01em",
           }}>{m.label}</span>
         ))}
-
-        {/* Right status area */}
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "clamp(5px,0.7vw,10px)" }}>
-          {/* Wifi icon */}
           <svg viewBox="0 0 24 24" fill="#1d1d1f"
             style={{ width: "clamp(9px,1.1vw,14px)", height: "clamp(9px,1.1vw,14px)" }}>
             <path d="M12 18.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
@@ -265,124 +253,80 @@ function SchoolWebsite() {
             <path d="M12 10c-2.8 0-5.2 1.1-7 2.9l1.4 1.4C7.8 12.9 9.8 12 12 12s4.2.9 5.6 2.3l1.4-1.4C17.2 11.1 14.8 10 12 10z"/>
             <path d="M12 6C8.1 6 4.6 7.6 2 10.2l1.4 1.4C5.6 9.2 8.6 8 12 8s6.4 1.2 8.6 3.6L22 10.2C19.4 7.6 15.9 6 12 6z"/>
           </svg>
-
-          {/* Battery */}
           <div style={{ display: "flex", alignItems: "center", gap: "clamp(2px,0.25vw,3px)" }}>
             <div style={{
               width: "clamp(18px,2.2vw,28px)", height: "clamp(8px,1vw,12px)",
-              border: "1px solid rgba(0,0,0,0.35)",
-              borderRadius: "clamp(2px,0.25vw,3px)",
-              padding: "1px",
-              display: "flex", alignItems: "center",
-              position: "relative",
+              border: "1px solid rgba(0,0,0,0.35)", borderRadius: "clamp(2px,0.25vw,3px)",
+              padding: "1px", display: "flex", alignItems: "center", position: "relative",
             }}>
-              <div style={{
-                width: "90%", height: "100%",
-                background: "#34c759",
-                borderRadius: "clamp(1px,0.12vw,2px)",
-              }} />
-              <div style={{
-                position: "absolute", right: -3,
-                width: "clamp(2px,0.28vw,3px)", height: "clamp(4px,0.5vw,6px)",
-                background: "rgba(0,0,0,0.25)",
-                borderRadius: "0 1px 1px 0",
-              }} />
+              <div style={{ width: "90%", height: "100%", background: "#34c759", borderRadius: "clamp(1px,0.12vw,2px)" }} />
+              <div style={{ position: "absolute", right: -3, width: "clamp(2px,0.28vw,3px)", height: "clamp(4px,0.5vw,6px)", background: "rgba(0,0,0,0.25)", borderRadius: "0 1px 1px 0" }} />
             </div>
             <span style={{ fontSize: "clamp(7px,0.82vw,11px)", color: "#1d1d1f" }}>100%</span>
           </div>
-
-          {/* Date + Time */}
           <span style={{ fontSize: "clamp(7px,0.85vw,12px)", color: "#1d1d1f", whiteSpace: "nowrap" }}>Mon Jun 5</span>
           <span style={{ fontSize: "clamp(7px,0.85vw,12px)", color: "#1d1d1f", fontWeight: 600, whiteSpace: "nowrap" }}>9:41 AM</span>
         </div>
       </div>
 
-      {/* ── SAFARI BROWSER CHROME ── */}
+      {/* ── SAFARI CHROME ── */}
       <div style={{
-        background: "#ececec",
-        borderBottom: "1px solid #d0d0d0",
+        background: "#ececec", borderBottom: "1px solid #d0d0d0",
         padding: "clamp(4px,0.55vw,7px) clamp(8px,1.2vw,14px)",
         display: "flex", alignItems: "center",
         gap: "clamp(4px,0.6vw,8px)", flexShrink: 0,
       }}>
-        {/* Traffic lights */}
         <div style={{ display: "flex", gap: "clamp(3px,0.4vw,5px)", flexShrink: 0 }}>
-          {[
-            { bg: "#ff5f57", border: "#e0443e" },
-            { bg: "#febc2e", border: "#d4a017" },
-            { bg: "#28c840", border: "#1aab29" },
-          ].map((c, i) => (
-            <div key={i} style={{
-              width: "clamp(8px,1vw,13px)", height: "clamp(8px,1vw,13px)",
-              borderRadius: "50%", background: c.bg,
-              boxShadow: `0 0 0 0.5px ${c.border}`,
-            }} />
+          {[{ bg: "#ff5f57", border: "#e0443e" }, { bg: "#febc2e", border: "#d4a017" }, { bg: "#28c840", border: "#1aab29" }].map((c, i) => (
+            <div key={i} style={{ width: "clamp(8px,1vw,13px)", height: "clamp(8px,1vw,13px)", borderRadius: "50%", background: c.bg, boxShadow: `0 0 0 0.5px ${c.border}` }} />
           ))}
         </div>
-
-        {/* Back / forward */}
         <div style={{ display: "flex", gap: "clamp(1px,0.15vw,2px)", flexShrink: 0 }}>
           {["‹","›"].map((a, i) => (
-            <div key={a} style={{
-              width: "clamp(16px,2vw,26px)", height: "clamp(16px,2vw,26px)",
-              borderRadius: 5,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: "clamp(12px,1.6vw,20px)",
-              color: i === 0 ? "#888" : "#ccc", fontWeight: 300,
-            }}>{a}</div>
+            <div key={a} style={{ width: "clamp(16px,2vw,26px)", height: "clamp(16px,2vw,26px)", borderRadius: 5, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "clamp(12px,1.6vw,20px)", color: i === 0 ? "#888" : "#ccc", fontWeight: 300 }}>{a}</div>
           ))}
         </div>
-
-        {/* URL bar */}
         <div style={{
-          flex: 1, background: "white",
-          borderRadius: "clamp(6px,0.8vw,10px)",
+          flex: 1, background: "white", borderRadius: "clamp(6px,0.8vw,10px)",
           padding: "clamp(3px,0.4vw,6px) clamp(8px,1.2vw,14px)",
           display: "flex", alignItems: "center", justifyContent: "center",
           gap: "clamp(3px,0.4vw,5px)",
-          boxShadow: "0 0 0 1px #c8c8c8, 0 1px 2px rgba(0,0,0,0.06)",
-          position: "relative",
+          boxShadow: "0 0 0 1px #c8c8c8, 0 1px 2px rgba(0,0,0,0.06)", position: "relative",
         }}>
           <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2.5" style={{ flexShrink: 0 }}>
-            <rect x="3" y="11" width="18" height="11" rx="2"/>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
           </svg>
           <span style={{ fontSize: "clamp(7px,0.88vw,12px)", color: "#374151", letterSpacing: "-0.01em" }}>
             brightmindstuition.edu.sg
           </span>
           <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#aaa" strokeWidth="2"
             style={{ position: "absolute", right: "clamp(6px,0.8vw,10px)" }}>
-            <polyline points="1 4 1 10 7 10"/>
-            <path d="M3.51 15a9 9 0 1 0 .49-3.6"/>
+            <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.6"/>
           </svg>
         </div>
-
-        {/* Share + new tab */}
         <div style={{ display: "flex", gap: "clamp(3px,0.4vw,6px)", flexShrink: 0, alignItems: "center" }}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.8"
-            style={{ width: "clamp(10px,1.2vw,15px)", height: "clamp(10px,1.2vw,15px)" }}>
-            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
-            <polyline points="16 6 12 2 8 6"/>
-            <line x1="12" y1="2" x2="12" y2="15"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.8" style={{ width: "clamp(10px,1.2vw,15px)", height: "clamp(10px,1.2vw,15px)" }}>
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/>
           </svg>
-          <svg viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.8"
-            style={{ width: "clamp(10px,1.2vw,15px)", height: "clamp(10px,1.2vw,15px)" }}>
-            <line x1="12" y1="5" x2="12" y2="19"/>
-            <line x1="5" y1="12" x2="19" y2="12"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.8" style={{ width: "clamp(10px,1.2vw,15px)", height: "clamp(10px,1.2vw,15px)" }}>
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
           </svg>
         </div>
       </div>
 
-      {/* ── WEBSITE CONTENT ── */}
-      <div style={{ flex: 1, overflowY: "auto", overflowX: "hidden", position: "relative", scrollbarWidth: "none" }}>
+      {/* ── WEBSITE CONTENT — static, no scroll ── */}
+      <div style={{
+        flex: 1, overflow: "hidden",
+        position: "relative",
+        pointerEvents: "none",
+      }}>
 
         {/* School navbar */}
         <div style={{
           background: "white", borderBottom: "1px solid #f1f5f9",
           padding: "0 clamp(10px,2vw,32px)",
           display: "flex", alignItems: "center", justifyContent: "space-between",
-          height: "clamp(28px,4vw,52px)",
-          flexShrink: 0, position: "sticky", top: 0, zIndex: 10,
+          height: "clamp(28px,4vw,52px)", flexShrink: 0,
           boxShadow: "0 1px 8px rgba(0,0,0,0.05)",
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: "clamp(4px,0.6vw,8px)" }}>
@@ -430,34 +374,17 @@ function SchoolWebsite() {
               <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#1a56db", display: "inline-block" }} />
               <span style={{ fontSize: "clamp(5px,0.65vw,8px)", color: "#1a56db", fontWeight: 700 }}>Now enrolling for 2025</span>
             </div>
-            <h1 style={{
-              fontSize: "clamp(11px,1.8vw,26px)", fontWeight: 900, color: "#0f172a",
-              lineHeight: 1.15, marginBottom: "clamp(4px,0.6vw,8px)", letterSpacing: "-0.03em",
-            }}>
+            <h1 style={{ fontSize: "clamp(11px,1.8vw,26px)", fontWeight: 900, color: "#0f172a", lineHeight: 1.15, marginBottom: "clamp(4px,0.6vw,8px)", letterSpacing: "-0.03em" }}>
               PSLE & O-Level<br/>Specialists
             </h1>
-            <p style={{
-              fontSize: "clamp(6px,0.78vw,10px)", color: "#64748b",
-              lineHeight: 1.6, marginBottom: "clamp(6px,1vw,14px)", maxWidth: 220,
-            }}>
+            <p style={{ fontSize: "clamp(6px,0.78vw,10px)", color: "#64748b", lineHeight: 1.6, marginBottom: "clamp(6px,1vw,14px)", maxWidth: 220 }}>
               Small classes. Expert tutors. Results that speak for themselves. Trusted by 500+ families across Singapore.
             </p>
             <div style={{ display: "flex", gap: "clamp(4px,0.5vw,6px)" }}>
-              <div style={{
-                background: "linear-gradient(135deg, #1a56db, #1e40af)",
-                color: "white", borderRadius: 20,
-                padding: "clamp(3px,0.5vw,7px) clamp(8px,1.2vw,14px)",
-                fontSize: "clamp(6px,0.72vw,9px)", fontWeight: 700,
-              }}>Book Trial Class</div>
-              <div style={{
-                background: "white", color: "#1a56db",
-                borderRadius: 20, border: "1.5px solid #1a56db",
-                padding: "clamp(3px,0.5vw,7px) clamp(8px,1.2vw,14px)",
-                fontSize: "clamp(6px,0.72vw,9px)", fontWeight: 600,
-              }}>View Schedule</div>
+              <div style={{ background: "linear-gradient(135deg, #1a56db, #1e40af)", color: "white", borderRadius: 20, padding: "clamp(3px,0.5vw,7px) clamp(8px,1.2vw,14px)", fontSize: "clamp(6px,0.72vw,9px)", fontWeight: 700 }}>Book Trial Class</div>
+              <div style={{ background: "white", color: "#1a56db", borderRadius: 20, border: "1.5px solid #1a56db", padding: "clamp(3px,0.5vw,7px) clamp(8px,1.2vw,14px)", fontSize: "clamp(6px,0.72vw,9px)", fontWeight: 600 }}>View Schedule</div>
             </div>
           </div>
-          {/* Stats */}
           <div style={{
             background: "white", borderRadius: "clamp(8px,1vw,14px)",
             padding: "clamp(8px,1.2vw,16px)",
@@ -494,18 +421,11 @@ function SchoolWebsite() {
             ].map(s => (
               <div key={s.sub} style={{
                 background: s.color, borderRadius: "clamp(5px,0.7vw,10px)",
-                padding: "clamp(5px,0.7vw,10px)",
-                border: `1px solid ${s.accent}22`,
+                padding: "clamp(5px,0.7vw,10px)", border: `1px solid ${s.accent}22`,
               }}>
                 <div style={{ fontSize: "clamp(6px,0.78vw,10px)", fontWeight: 700, color: "#0f172a", marginBottom: 2 }}>{s.sub}</div>
                 <div style={{ fontSize: "clamp(5px,0.6vw,8px)", color: "#64748b" }}>{s.level}</div>
-                <div style={{
-                  marginTop: "clamp(3px,0.4vw,5px)",
-                  display: "inline-block",
-                  background: s.accent, color: "white",
-                  borderRadius: 10, padding: "1px 5px",
-                  fontSize: "clamp(5px,0.58vw,7px)", fontWeight: 700,
-                }}>{s.slots}</div>
+                <div style={{ marginTop: "clamp(3px,0.4vw,5px)", display: "inline-block", background: s.accent, color: "white", borderRadius: 10, padding: "1px 5px", fontSize: "clamp(5px,0.58vw,7px)", fontWeight: 700 }}>{s.slots}</div>
               </div>
             ))}
           </div>
@@ -537,26 +457,23 @@ function SchoolWebsite() {
         </div>
       </div>
 
-      {/* Floating chat button */}
-      <motion.div
-        style={{
-          position: "absolute",
-          bottom: "clamp(8px,1.2vw,16px)", right: "clamp(8px,1.2vw,16px)",
-          width: "clamp(22px,3vw,40px)", height: "clamp(22px,3vw,40px)",
-          borderRadius: "50%",
-          background: "linear-gradient(135deg, #1a56db, #1e40af)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 4px 16px rgba(26,86,219,0.4)",
-          zIndex: 15,
-        }}
-        animate={{ scale: [1, 1.05, 1] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
+      {/* Static chat button — no bounce animation */}
+      <div style={{
+        position: "absolute",
+        bottom: "clamp(8px,1.2vw,16px)", right: "clamp(8px,1.2vw,16px)",
+        width: "clamp(22px,3vw,40px)", height: "clamp(22px,3vw,40px)",
+        borderRadius: "50%",
+        background: "linear-gradient(135deg, #1a56db, #1e40af)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        boxShadow: "0 4px 16px rgba(26,86,219,0.4)",
+        zIndex: 15,
+      }}>
         <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
         </svg>
-      </motion.div>
+      </div>
 
+      {/* Animated chat widget */}
       <ChatWidget />
     </div>
   );
@@ -564,12 +481,14 @@ function SchoolWebsite() {
 
 export default function MacbookSection() {
   return (
-    <section style={{ background: "#020810", padding: "clamp(60px,8vw,100px) clamp(16px,4vw,48px)" }}>
+    <section style={{ background: "#020810", padding: "clamp(60px,8vw,100px) clamp(16px,4vw,48px)", overflow: "hidden" }}>
+
+      {/* Header */}
       <motion.div
-        className="text-center mb-10"
+        className="text-center mb-10 sm:mb-14"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="flex items-center justify-center gap-2.5 mb-4"
@@ -582,23 +501,102 @@ export default function MacbookSection() {
           style={{ fontSize: "clamp(28px,4.5vw,56px)", color: "white" }}>
           See Stride in action.
         </h2>
-       
+        <p className="mt-4 mx-auto"
+          style={{ fontSize: "clamp(14px,1.5vw,17px)", color: "rgba(180,188,210,0.5)", maxWidth: 480, lineHeight: 1.7 }}>
+          A real tuition centre, running on Stride. Every parent query answered instantly — 24/7, automatically.
+        </p>
       </motion.div>
 
+      {/* MacBook */}
       <motion.div
-        className="mx-auto rounded-[20px] overflow-hidden"
-        style={{
-          maxWidth: "min(1100px, 94vw)",
-          height: "clamp(400px, 56.25vw, 687px)",
-          boxShadow: "0 0 0 1px rgba(255,255,255,0.06), 0 40px 100px rgba(0,0,0,0.6), 0 0 80px rgba(59,126,248,0.1)",
-          position: "relative",
-        }}
+        className="relative mx-auto"
+        style={{ maxWidth: "min(1400px, 99vw)" }}
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       >
-        <SchoolWebsite />
+        {/* Glow */}
+        <div style={{
+          position: "absolute",
+          bottom: "5%", left: "8%", right: "8%", height: 100,
+          background: "radial-gradient(ellipse, rgba(59,126,248,0.28) 0%, transparent 70%)",
+          filter: "blur(24px)", pointerEvents: "none", zIndex: 0,
+        }} />
+
+        {/* Aspect-ratio locked container */}
+<div style={{
+  position: "relative",
+  width: "100%",
+  paddingBottom: "62.1%",
+  zIndex: 1,
+}}>
+  {/* Screen content — behind PNG */}
+  <div style={{
+    position: "absolute",
+    top: "8.5%",
+    left: "26.5%",
+    right: "26.5%",
+    bottom: "18%",
+    overflow: "hidden",
+    borderRadius: "clamp(2px,0.3vw,5px)",
+    zIndex: 2,
+    background: "white",
+  }}>
+    <div style={{
+      position: "absolute",
+      top: 0, left: 0,
+      width: "230%",
+      height: "230%",
+      transform: "scale(0.435)",
+      transformOrigin: "top left",
+      pointerEvents: "none",
+      overflow: "hidden",
+    }}>
+      <SchoolWebsite />
+    </div>
+  </div>
+
+  {/* MacBook PNG — transparent bg needed to mask edges cleanly */}
+  <img
+    src="/images/macbook-frame.png"
+    alt="MacBook"
+    style={{
+      position: "absolute",
+      inset: 0, width: "100%", height: "100%",
+      display: "block",
+      pointerEvents: "none", userSelect: "none",
+      zIndex: 3,
+    }}
+  />
+
+
+          {/* Screen area — website sits here */}
+          <div style={{
+            position: "absolute",
+            top: "8.5%",
+            left: "26.5%",
+            right: "26.5%",
+            bottom: "18%",
+            overflow: "hidden",
+            borderRadius: "clamp(2px,0.3vw,5px)",
+            zIndex: 3,
+            background: "white",
+          }}>
+            <div style={{
+              position: "absolute",
+              top: 0, left: 0,
+              width: "230%",
+              height: "230%",
+              transform: "scale(0.435)",
+              transformOrigin: "top left",
+              pointerEvents: "none",
+              overflow: "hidden",
+            }}>
+              <SchoolWebsite />
+            </div>
+          </div>
+        </div>
       </motion.div>
     </section>
   );

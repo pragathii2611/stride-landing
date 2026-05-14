@@ -67,7 +67,6 @@ function Mock1() {
         <span className="text-white/20 font-medium mx-auto tracking-wide" style={{ fontSize: "clamp(9px,1vw,11px)" }}>Stride — Tuition Enquiries</span>
       </div>
       <div className="flex">
-        {/* Sidebar */}
         <div className="hidden sm:flex flex-shrink-0 flex-col" style={{ width: "clamp(120px,16vw,175px)", background: "#060d1e", boxShadow: "1px 0 0 rgba(255,255,255,0.03)" }}>
           <div className="px-3 py-2.5" style={{ boxShadow: "0 1px 0 rgba(255,255,255,0.03)" }}>
             <div className="flex items-center gap-2 rounded-[8px] px-2.5 py-1.5" style={{ background: "rgba(255,255,255,0.04)" }}>
@@ -80,8 +79,10 @@ function Mock1() {
               <div className={`rounded-full bg-gradient-to-br ${c.color} flex items-center justify-center font-bold flex-shrink-0 relative`}
                 style={{ width: "clamp(22px,2.5vw,28px)", height: "clamp(22px,2.5vw,28px)", fontSize: "clamp(7px,0.8vw,9px)" }}>
                 {c.initials}
-                {c.unread > 0 && <span className="absolute -top-0.5 -right-0.5 rounded-full bg-[#3b7ef8] flex items-center justify-center font-bold"
-                  style={{ width: "clamp(9px,1vw,12px)", height: "clamp(9px,1vw,12px)", fontSize: "clamp(6px,0.7vw,7px)" }}>{c.unread}</span>}
+                {c.unread > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 rounded-full bg-[#3b7ef8] flex items-center justify-center font-bold text-white"
+                    style={{ width: "clamp(9px,1vw,12px)", height: "clamp(9px,1vw,12px)", fontSize: "clamp(6px,0.7vw,7px)" }}>{c.unread}</span>
+                )}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-1">
@@ -96,7 +97,6 @@ function Mock1() {
             </div>
           ))}
         </div>
-        {/* Chat */}
         <div className="flex-1 flex flex-col min-w-0">
           <div className="flex items-center gap-2 px-3 py-2" style={{ background: "#080f20", boxShadow: "0 1px 0 rgba(255,255,255,0.03)" }}>
             <div className="rounded-full bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center font-bold flex-shrink-0"
@@ -163,7 +163,6 @@ function Mock2() {
         <span className="text-white/20 font-medium mx-auto tracking-wide" style={{ fontSize: "clamp(9px,1vw,11px)" }}>Stride — Student Profile</span>
       </div>
       <div style={{ padding: "clamp(12px,1.5vw,16px)", display: "flex", flexDirection: "column", gap: "clamp(10px,1.2vw,14px)" }}>
-        {/* Profile */}
         <div className="flex items-center gap-3">
           <div className="relative flex-shrink-0">
             <div className="rounded-[10px] bg-gradient-to-br from-pink-500 via-rose-500 to-orange-500 flex items-center justify-center font-black"
@@ -173,7 +172,7 @@ function Mock2() {
           </div>
           <div className="flex-1 min-w-0">
             <div className="font-bold text-white" style={{ fontSize: "clamp(11px,1.3vw,15px)" }}>Aisha Mahmood</div>
-            <div className="text-white/40 truncate" style={{ fontSize: "clamp(9px,1vw,11px)" }}>P6 · Bukit Timah · Mrs Mahmood</div>
+            <div className="text-white/40 truncate" style={{ fontSize: "clamp(9px,1vw,11px)" }}>P6 · Bukit Timah · Parent: Mrs Mahmood</div>
             <div className="flex items-center gap-1.5 mt-1 flex-wrap">
               <span className="px-1.5 py-0.5 rounded-full font-medium" style={{ fontSize: "clamp(7px,0.8vw,9px)", background: "rgba(59,126,248,0.12)", boxShadow: "0 0 0 1px rgba(59,126,248,0.2)", color: "#5b9aff" }}>PSLE 2025</span>
               <span className="px-1.5 py-0.5 rounded-full font-medium" style={{ fontSize: "clamp(7px,0.8vw,9px)", background: "rgba(74,222,128,0.08)", boxShadow: "0 0 0 1px rgba(74,222,128,0.15)", color: "#4ade80" }}>High Intent</span>
@@ -184,12 +183,10 @@ function Mock2() {
             <div className="text-white/30 uppercase tracking-wider" style={{ fontSize: "clamp(6px,0.7vw,8px)" }}>AI Score</div>
           </div>
         </div>
-
-        {/* Journey */}
         <div>
           <div className="text-white/25 uppercase tracking-wider font-semibold mb-1.5" style={{ fontSize: "clamp(7px,0.8vw,9px)" }}>Student Journey</div>
           <div className="flex items-center">
-            {stages.map((s,i) => (
+            {stages.map((s, i) => (
               <div key={i} className="flex items-center flex-1">
                 <div className="flex flex-col items-center flex-1">
                   <div className="w-full rounded-full" style={{ height: "clamp(3px,0.4vw,5px)", background: i<=currentStage ? "linear-gradient(90deg,#3b7ef8,#00f260)" : "rgba(255,255,255,0.06)" }}/>
@@ -201,9 +198,7 @@ function Mock2() {
             ))}
           </div>
         </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-1.5">
+        <div className="grid grid-cols-3 gap-2">
           {[{v:"S$480",l:"Monthly",c:"#4ade80"},{v:"3",l:"Subjects",c:"#5b9aff"},{v:"Oct 25",l:"PSLE",c:"#fbbf24"}].map(s=>(
             <div key={s.l} className="rounded-[8px] text-center" style={{ padding: "clamp(6px,0.8vw,10px) clamp(4px,0.5vw,8px)", background: "rgba(255,255,255,0.03)", boxShadow: "0 0 0 1px rgba(255,255,255,0.04)" }}>
               <div className="font-bold" style={{ fontSize: "clamp(11px,1.3vw,14px)", color: s.c }}>{s.v}</div>
@@ -211,12 +206,10 @@ function Mock2() {
             </div>
           ))}
         </div>
-
-        {/* Activity */}
         <div>
           <div className="text-white/25 uppercase tracking-wider font-semibold mb-1.5" style={{ fontSize: "clamp(7px,0.8vw,9px)" }}>Recent Activity</div>
           <div className="flex flex-col gap-1">
-            {activity.map((a,i)=>(
+            {activity.map((a, i) => (
               <div key={i} className="flex items-center gap-2 rounded-[7px]" style={{ padding: "clamp(5px,0.6vw,8px) clamp(8px,1vw,12px)", background: "rgba(255,255,255,0.02)" }}>
                 <span className="rounded-full flex-shrink-0" style={{ width: "clamp(4px,0.5vw,6px)", height: "clamp(4px,0.5vw,6px)", background: a.color }}/>
                 <span className="text-white/50 flex-1 truncate" style={{ fontSize: "clamp(8px,0.9vw,10px)" }}>{a.text}</span>
@@ -246,8 +239,7 @@ function Mock3() {
         <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"/><span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]"/><span className="w-2.5 h-2.5 rounded-full bg-[#28c840]"/>
         <span className="text-white/20 font-medium mx-auto tracking-wide" style={{ fontSize: "clamp(9px,1vw,11px)" }}>Stride — AI Enrolment Agent</span>
       </div>
-      <div className="flex">
-        {/* Sidebar */}
+      <div className="flex flex-col sm:flex-row">
         <div className="hidden sm:flex flex-shrink-0 flex-col" style={{ width: "clamp(100px,13vw,130px)", background: "#060d1e", boxShadow: "1px 0 0 rgba(255,255,255,0.03)", padding: "clamp(8px,1vw,12px)", gap: "clamp(8px,1vw,12px)" }}>
           <div className="rounded-[8px]" style={{ padding: "clamp(6px,0.8vw,10px)", background: "rgba(0,242,96,0.06)", boxShadow: "0 0 0 1px rgba(0,242,96,0.12)" }}>
             <div className="flex items-center gap-1.5 mb-1">
@@ -264,9 +256,16 @@ function Mock3() {
             </div>
           ))}
         </div>
-
-        {/* Chat */}
         <div className="flex-1 flex flex-col min-w-0">
+          <div className="flex sm:hidden items-center gap-3 px-4 py-2" style={{ background: "#060d1e", boxShadow: "0 1px 0 rgba(255,255,255,0.03)" }}>
+            <div className="flex items-center gap-1.5">
+              <motion.span className="rounded-full bg-[#00f260]" style={{ width: "clamp(4px,0.5vw,6px)", height: "clamp(4px,0.5vw,6px)" }}
+                animate={{ opacity:[1,0.3,1] }} transition={{ duration:1.5, repeat:Infinity }}/>
+              <span className="font-bold text-[#00f260]" style={{ fontSize: "clamp(8px,0.9vw,10px)" }}>AI Active</span>
+            </div>
+            <span className="text-white/20" style={{ fontSize: "clamp(9px,1vw,11px)" }}>·</span>
+            <span className="text-white/30" style={{ fontSize: "clamp(8px,0.9vw,10px)" }}>31 enquiries · 4 enrolled today</span>
+          </div>
           <div className="flex items-center gap-2 px-3 py-2" style={{ boxShadow: "0 1px 0 rgba(255,255,255,0.03)" }}>
             <div className="rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center font-bold flex-shrink-0"
               style={{ width: "clamp(20px,2.2vw,28px)", height: "clamp(20px,2.2vw,28px)", fontSize: "clamp(7px,0.8vw,9px)" }}>TL</div>
@@ -274,19 +273,16 @@ function Mock3() {
               <div className="font-semibold text-white/80" style={{ fontSize: "clamp(9px,1vw,11px)" }}>Tracy Lim</div>
               <div className="text-white/25" style={{ fontSize: "clamp(7px,0.8vw,9px)" }}>Parent · P5 Science · WhatsApp</div>
             </div>
-            <div className="font-bold rounded-full flex-shrink-0" style={{ fontSize: "clamp(7px,0.8vw,9px)", padding: "2px 8px", background: "rgba(59,126,248,0.12)", color: "#5b9aff", boxShadow: "0 0 0 1px rgba(59,126,248,0.2)" }}>7.8</div>
+            <div className="font-bold rounded-full flex-shrink-0" style={{ fontSize: "clamp(7px,0.8vw,9px)", padding: "2px 8px", background: "rgba(59,126,248,0.12)", color: "#5b9aff", boxShadow: "0 0 0 1px rgba(59,126,248,0.2)" }}>Score 7.8</div>
           </div>
-
           <div className="flex flex-col gap-1.5" style={{ padding: "clamp(8px,1vw,12px)" }}>
             {messages.map((m,i)=>(
               <div key={i} className={`flex items-end gap-1.5 ${m.side==="r"?"justify-end":"justify-start"}`}>
-                {m.side==="l" && (
-                  <div className="rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center font-bold flex-shrink-0"
-                    style={{ width: "clamp(14px,1.6vw,20px)", height: "clamp(14px,1.6vw,20px)", fontSize: "clamp(6px,0.7vw,7px)" }}>{m.avatar}</div>
-                )}
+                {m.side==="l"&&<div className="rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center font-bold flex-shrink-0"
+                  style={{ width: "clamp(14px,1.6vw,20px)", height: "clamp(14px,1.6vw,20px)", fontSize: "clamp(6px,0.7vw,7px)" }}>{m.avatar}</div>}
                 <div className={`max-w-[82%] rounded-[9px] leading-[1.6] ${m.side==="r"?"text-[rgba(180,200,255,0.85)]":"text-white/55"}`}
                   style={{ fontSize: "clamp(9px,1vw,11px)", padding: "clamp(5px,0.6vw,8px) clamp(8px,1vw,12px)", background: m.side==="r"?"rgba(59,126,248,0.12)":"rgba(255,255,255,0.04)", boxShadow: `0 0 0 1px ${m.side==="r"?"rgba(59,126,248,0.18)":"rgba(255,255,255,0.05)"}` }}>
-                  {m.side==="r" && (
+                  {m.side==="r"&&(
                     <div className="flex items-center gap-1 mb-1">
                       <span className="font-bold" style={{ fontSize: "clamp(6px,0.7vw,8px)", color:"#00f260" }}>STRIDE AI</span>
                       <motion.span className="rounded-full bg-[#00f260]" style={{ width: "clamp(3px,0.4vw,4px)", height: "clamp(3px,0.4vw,4px)" }}
@@ -298,8 +294,6 @@ function Mock3() {
               </div>
             ))}
           </div>
-
-          {/* Enrolment confirmed */}
           <div className="flex items-center gap-2 rounded-[10px]"
             style={{ margin: "0 clamp(8px,1vw,12px) clamp(8px,1vw,12px)", padding: "clamp(8px,1vw,12px)", background:"linear-gradient(135deg,rgba(0,242,96,0.08),rgba(59,126,248,0.06))", boxShadow:"0 0 0 1px rgba(0,242,96,0.2)" }}>
             <div className="rounded-[8px] flex items-center justify-center font-black flex-shrink-0"
@@ -310,7 +304,7 @@ function Mock3() {
             </div>
             <div className="font-bold rounded-full flex-shrink-0 whitespace-nowrap"
               style={{ fontSize: "clamp(7px,0.8vw,9px)", padding: "clamp(3px,0.4vw,4px) clamp(6px,0.8vw,8px)", background:"rgba(0,242,96,0.12)", color:"#00f260", boxShadow:"0 0 0 1px rgba(0,242,96,0.2)" }}>This Sat</div>
-          </div>
+        </div>
         </div>
       </div>
     </div>
@@ -332,11 +326,11 @@ export default function FeatureCarousel() {
   const go = useCallback((i: number) => {
     setActive(i);
     if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => go((activeRef.current + 1) % 3), 7000);
+    timerRef.current = setTimeout(() => go((activeRef.current + 1) % 3), 12000);
   }, []);
 
   useEffect(() => {
-    timerRef.current = setTimeout(() => go(1), 7000);
+    timerRef.current = setTimeout(() => go(1), 12000);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [go]);
 
@@ -347,7 +341,7 @@ export default function FeatureCarousel() {
 
   const resume = useCallback(() => {
     setPaused(false); setShowHint(false);
-    timerRef.current = setTimeout(() => go((activeRef.current + 1) % 3), 3000);
+    timerRef.current = setTimeout(() => go((activeRef.current + 1) % 3), 5000);
   }, [go]);
 
   const onPointerDown = useCallback(() => {
@@ -408,7 +402,7 @@ export default function FeatureCarousel() {
               onClick={() => !isLongPress.current && go(i)}
               className="flex-1 flex flex-col items-center justify-end relative transition-all duration-200 group"
               style={{
-                padding: "clamp(20px,3vw,32px) clamp(8px,2vw,24px) 0",
+                padding: "clamp(20px,3vw,32px) clamp(2px,0.8vw,8px) 0",
                 borderRight: i < tabs.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
                 background: "transparent",
                 minHeight: "clamp(72px,10vw,96px)",
@@ -419,16 +413,17 @@ export default function FeatureCarousel() {
                 className="absolute flex items-center justify-center transition-all duration-300"
                 style={{
                   top: "clamp(14px,2vw,22px)",
-                  left: "50%",
-                  transform: "translateX(-50%)",
+                  left: "50%", transform: "translateX(-50%)",
                   width: isActive ? "clamp(22px,2.5vw,28px)" : "clamp(18px,2vw,22px)",
                   height: isActive ? "clamp(22px,2.5vw,28px)" : "clamp(18px,2vw,22px)",
                   borderRadius: "50%",
-                  background: isActive ? "linear-gradient(135deg, #3b7ef8, #5b9aff)" : "rgba(255,255,255,0.06)",
+                  background: isActive
+                    ? "linear-gradient(135deg, #3b7ef8, #5b9aff)"
+                    : "rgba(255,255,255,0.15)",
                   boxShadow: isActive ? "0 0 12px rgba(59,126,248,0.4), 0 0 24px rgba(59,126,248,0.15)" : "none",
                   fontSize: "clamp(9px,1vw,11px)",
                   fontWeight: 800,
-                  color: isActive ? "white" : "rgba(255,255,255,0.3)",
+                  color: isActive ? "white" : "rgba(255,255,255,0.6)",
                 }}
               >
                 {String(i + 1).padStart(2, "0")}
@@ -436,8 +431,10 @@ export default function FeatureCarousel() {
 
               {/* Icon + Label */}
               <div className="flex items-center gap-1.5 mb-3 mt-auto">
-                <span className="flex-shrink-0 transition-colors duration-300 hidden sm:block"
-                  style={{ color: isActive ? "#3b7ef8" : "rgba(255,255,255,0.3)" }}>
+                <span
+                  className="flex-shrink-0 transition-colors duration-300 hidden sm:block"
+                  style={{ color: isActive ? "#3b7ef8" : "rgba(255,255,255,0.5)" }}
+                >
                   {tab.icon}
                 </span>
                 <span
@@ -445,7 +442,7 @@ export default function FeatureCarousel() {
                   style={{
                     fontSize: "clamp(10px,1.2vw,14px)",
                     fontWeight: isActive ? 600 : 500,
-                    color: isActive ? "white" : "rgba(255,255,255,0.35)",
+                    color: isActive ? "white" : "rgba(255,255,255,0.7)",
                     letterSpacing: "-0.01em",
                     whiteSpace: "nowrap",
                   }}
@@ -454,8 +451,8 @@ export default function FeatureCarousel() {
                 </span>
               </div>
 
-              {/* Underline track */}
-              <div className="w-full relative overflow-hidden" style={{ height: 2, background: "rgba(255,255,255,0.05)" }}>
+              {/* Underline */}
+              <div className="w-full relative overflow-hidden" style={{ height: 2, background: "rgba(255,255,255,0.08)" }}>
                 {isActive && (
                   <motion.div
                     className="absolute inset-y-0 left-0 w-full h-full rounded-full"
@@ -470,7 +467,7 @@ export default function FeatureCarousel() {
                     style={{ background: "linear-gradient(90deg, #5b9aff, #00f260)" }}
                     initial={{ width: "0%" }}
                     animate={{ width: paused ? undefined : "100%" }}
-                    transition={{ duration: 7, ease: "linear" }}
+                    transition={{ duration: 12, ease: "linear" }}
                   />
                 )}
               </div>
@@ -503,11 +500,7 @@ export default function FeatureCarousel() {
               </h2>
               <p
                 className="mt-4 leading-[1.75]"
-                style={{
-                  fontSize: "clamp(13px,1.3vw,15px)",
-                  color: "rgba(180,188,210,0.55)",
-                  maxWidth: 440,
-                }}
+                style={{ fontSize: "clamp(13px,1.3vw,15px)", color: "rgba(180,188,210,0.55)", maxWidth: 440 }}
               >
                 {tabs[active].body}
               </p>

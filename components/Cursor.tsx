@@ -7,7 +7,6 @@ export default function Cursor() {
   const glowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Skip on touch devices
     if (window.matchMedia("(pointer: coarse)").matches) return;
 
     let mouseX = -200, mouseY = -200;
@@ -20,17 +19,19 @@ export default function Cursor() {
     };
 
     const tick = () => {
-      // Dot — instant, no lag
+      // Dot — instant, no lerp at all
       if (dotRef.current) {
-        dotRef.current.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+        dotRef.current.style.transform =
+          `translate3d(${mouseX - 4}px, ${mouseY - 4}px, 0)`;
       }
 
-      // Glow — smooth lerp, trails slightly behind
-      glowX += (mouseX - glowX) * 0.06;
-      glowY += (mouseY - glowY) * 0.06;
+      // Glow — faster lerp (0.14 instead of 0.06)
+      glowX += (mouseX - glowX) * 0.14;
+      glowY += (mouseY - glowY) * 0.14;
 
       if (glowRef.current) {
-        glowRef.current.style.transform = `translate(${glowX - 240}px, ${glowY - 240}px)`;
+        glowRef.current.style.transform =
+          `translate3d(${glowX - 240}px, ${glowY - 240}px, 0)`;
       }
 
       rafId = requestAnimationFrame(tick);
@@ -49,7 +50,6 @@ export default function Cursor() {
     window.addEventListener("mousemove", onMove, { passive: true });
     document.addEventListener("mouseleave", onLeave);
     document.addEventListener("mouseenter", onEnter);
-
     rafId = requestAnimationFrame(tick);
 
     return () => {
@@ -62,7 +62,7 @@ export default function Cursor() {
 
   return (
     <>
-      {/* Glow — trails behind */}
+      {/* Glow */}
       <div
         ref={glowRef}
         className="fixed top-0 left-0 pointer-events-none z-[9990] rounded-full"
@@ -70,12 +70,12 @@ export default function Cursor() {
           width: 480,
           height: 480,
           background: "radial-gradient(circle, rgba(59,126,248,0.07) 0%, transparent 65%)",
-          transition: "opacity 0.3s ease",
           willChange: "transform",
+          transition: "opacity 0.3s ease",
         }}
       />
 
-      {/* Dot — instant */}
+      {/* Dot */}
       <div
         ref={dotRef}
         className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full"
