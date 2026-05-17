@@ -392,90 +392,95 @@ export default function FeatureCarousel() {
         )}
       </AnimatePresence>
 
-      {/* ── TABS ROW ── */}
-      <div className="flex items-stretch" style={{ boxShadow: "0 1px 0 rgba(255,255,255,0.05)" }}>
-        {tabs.map((tab, i) => {
-          const isActive = active === i;
-          return (
-            <button
-              key={i}
-              onClick={() => !isLongPress.current && go(i)}
-              className="flex-1 flex flex-col items-center justify-end relative transition-all duration-200 group"
-              style={{
-                padding: "clamp(20px,3vw,32px) clamp(2px,0.8vw,8px) 0",
-                borderRight: i < tabs.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
-                background: "transparent",
-                minHeight: "clamp(72px,10vw,96px)",
-              }}
-            >
-              {/* Number badge */}
-              <div
-                className="absolute flex items-center justify-center transition-all duration-300"
-                style={{
-                  top: "clamp(14px,2vw,22px)",
-                  left: "50%", transform: "translateX(-50%)",
-                  width: isActive ? "clamp(22px,2.5vw,28px)" : "clamp(18px,2vw,22px)",
-                  height: isActive ? "clamp(22px,2.5vw,28px)" : "clamp(18px,2vw,22px)",
-                  borderRadius: "50%",
-                  background: isActive
-                    ? "linear-gradient(135deg, #3b7ef8, #5b9aff)"
-                    : "rgba(255,255,255,0.15)",
-                  boxShadow: isActive ? "0 0 12px rgba(59,126,248,0.4), 0 0 24px rgba(59,126,248,0.15)" : "none",
-                  fontSize: "clamp(9px,1vw,11px)",
-                  fontWeight: 800,
-                  color: isActive ? "white" : "rgba(255,255,255,0.6)",
-                }}
-              >
-                {String(i + 1).padStart(2, "0")}
-              </div>
+      {/* ── TABS ROW — minimal text tabs ── */}
+<div className="flex justify-center" style={{ padding: "clamp(20px,3vw,32px) clamp(20px,5vw,80px) 0" }}>
+  <div style={{
+    display: "inline-flex",
+    gap: "clamp(2px,0.3vw,4px)",
+    background: "rgba(255,255,255,0.04)",
+    borderRadius: "clamp(8px,1vw,12px)",
+    padding: "clamp(3px,0.4vw,5px)",
+    boxShadow: "0 0 0 1px rgba(255,255,255,0.06)",
+  }}>
+    {tabs.map((tab, i) => {
+      const isActive = active === i;
+      return (
+        <button
+          key={i}
+          onClick={() => !isLongPress.current && go(i)}
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: "clamp(8px,1vw,12px) clamp(16px,2.2vw,28px)",
+            borderRadius: "clamp(6px,0.8vw,9px)",
+            position: "relative",
+            overflow: "hidden",
+            transition: "all 0.2s ease",
+          }}
+        >
+          {/* Active background — aurora fill */}
+{isActive && (
+  <motion.div
+    layoutId="activeTab"
+    style={{
+      position: "absolute", inset: 0,
+      borderRadius: "clamp(6px,0.8vw,9px)",
+      boxShadow: "0 0 0 1px rgba(59,126,248,0.25)",
+      overflow: "hidden",
+    }}
+    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+  >
+    {/* Base fill */}
+    <div style={{
+      position: "absolute", inset: 0,
+      background: "rgba(59,126,248,0.1)",
+    }} />
 
-              {/* Icon + Label */}
-              <div className="flex items-center gap-1.5 mb-3 mt-auto">
-                <span
-                  className="flex-shrink-0 transition-colors duration-300 hidden sm:block"
-                  style={{ color: isActive ? "#3b7ef8" : "rgba(255,255,255,0.5)" }}
-                >
-                  {tab.icon}
-                </span>
-                <span
-                  className="transition-all duration-300"
-                  style={{
-                    fontSize: "clamp(10px,1.2vw,14px)",
-                    fontWeight: isActive ? 600 : 500,
-                    color: isActive ? "white" : "rgba(255,255,255,0.7)",
-                    letterSpacing: "-0.01em",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {tab.label}
-                </span>
-              </div>
+    {/* Aurora sweep — fills left to right over 12s */}
+    <motion.div
+      style={{
+        position: "absolute", inset: 0,
+        background: "linear-gradient(90deg, transparent 0%, rgba(59,126,248,0.35) 40%, rgba(0,242,96,0.2) 70%, transparent 100%)",
+        backgroundSize: "200% 100%",
+      }}
+      initial={{ backgroundPosition: "-100% 0" }}
+      animate={{ backgroundPosition: paused ? "-100% 0" : "200% 0" }}
+      transition={{ duration: 12, ease: "linear" }}
+    />
 
-              {/* Underline */}
-              <div className="w-full relative overflow-hidden" style={{ height: 2, background: "rgba(255,255,255,0.08)" }}>
-                {isActive && (
-                  <motion.div
-                    className="absolute inset-y-0 left-0 w-full h-full rounded-full"
-                    style={{ background: "linear-gradient(90deg, #3b7ef8, #5b9aff)" }}
-                    layoutId="tabUnderline"
-                    transition={{ type: "spring", stiffness: 400, damping: 35 }}
-                  />
-                )}
-                {isActive && (
-                  <motion.div
-                    className="absolute inset-y-0 left-0 h-full rounded-full z-10"
-                    style={{ background: "linear-gradient(90deg, #5b9aff, #00f260)" }}
-                    initial={{ width: "0%" }}
-                    animate={{ width: paused ? undefined : "100%" }}
-                    transition={{ duration: 12, ease: "linear" }}
-                  />
-                )}
-              </div>
-            </button>
-          );
-        })}
-      </div>
+    {/* Shimmer blob */}
+    <motion.div
+      style={{
+        position: "absolute",
+        top: "-20%", left: "-10%",
+        width: "60%", height: "140%",
+        background: "radial-gradient(ellipse, rgba(91,154,255,0.4) 0%, transparent 70%)",
+        filter: "blur(8px)",
+      }}
+      animate={paused ? {} : { left: ["-10%", "120%"] }}
+      transition={{ duration: 12, ease: "linear" }}
+    />
+  </motion.div>
+)}
 
+          {/* Label */}
+          <span style={{
+            position: "relative", zIndex: 1,
+            fontSize: "clamp(11px,1.2vw,15px)",
+            fontWeight: isActive ? 600 : 400,
+            color: isActive ? "white" : "rgba(255,255,255,0.4)",
+            letterSpacing: "-0.01em",
+            whiteSpace: "nowrap",
+            transition: "color 0.2s ease",
+          }}>
+            {tab.label}
+          </span>
+        </button>
+      );
+    })}
+  </div>
+</div>
       {/* ── CONTENT ── */}
       <div
         className="max-w-[1400px] mx-auto"

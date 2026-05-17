@@ -7,41 +7,17 @@ export default function ScrollGlow() {
 
   useEffect(() => {
     const sections = [
-      { sel: ".section-hero", color: "rgba(59,126,248,0.07)", x: 50, y: 38 },
-      {
-        sel: ".section-ticker",
-        color: "rgba(59,126,248,0.04)",
-        x: 50,
-        y: 50,
-      },
-      {
-        sel: ".section-carousel",
-        color: "rgba(59,126,248,0.05)",
-        x: 68,
-        y: 44,
-      },
-      { sel: ".section-flip", color: "rgba(59,126,248,0.04)", x: 50, y: 50 },
-      {
-        sel: ".section-journey",
-        color: "rgba(59,126,248,0.04)",
-        x: 38,
-        y: 50,
-      },
-      {
-        sel: ".section-pipeline",
-        color: "rgba(59,126,248,0.04)",
-        x: 32,
-        y: 50,
-      },
-      {
-        sel: ".section-pricing",
-        color: "rgba(59,126,248,0.06)",
-        x: 50,
-        y: 50,
-      },
-      { sel: ".section-testi", color: "rgba(59,126,248,0.03)", x: 62, y: 50 },
-      { sel: ".section-cta", color: "rgba(59,126,248,0.05)", x: 40, y: 50 },
-    ];
+  { sel: ".section-hero", color: "rgba(59,126,248,0.07)", x: 50, y: 38 },
+  { sel: ".section-ticker", color: "rgba(59,126,248,0.04)", x: 50, y: 50 },
+  { sel: ".section-carousel", color: "rgba(59,126,248,0.05)", x: 68, y: 44 },
+  { sel: ".section-flip", color: "rgba(59,126,248,0.04)", x: 50, y: 50 },
+  { sel: ".section-journey", color: "rgba(59,126,248,0.04)", x: 38, y: 50 },
+  { sel: ".section-pipeline", color: "rgba(59,126,248,0.04)", x: 32, y: 50 },
+  { sel: ".section-macbook", color: "transparent", x: 50, y: 50 },  // ← add this
+  { sel: ".section-pricing", color: "rgba(59,126,248,0.06)", x: 50, y: 50 },
+  { sel: ".section-testi", color: "rgba(59,126,248,0.03)", x: 62, y: 50 },
+  { sel: ".section-cta", color: "rgba(59,126,248,0.05)", x: 40, y: 50 },
+];
 
     const onScroll = () => {
       const vh = window.innerHeight;
