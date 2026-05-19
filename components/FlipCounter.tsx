@@ -137,7 +137,7 @@ export default function FlipCounter() {
     return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
   }, [started]);
 
-  const formatted = count.toLocaleString();
+  const formatted = count.toString();
   const chars = formatted.split("");
 
   return (
